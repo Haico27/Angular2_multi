@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let destination of destinations"
+      (click)="onSelect(destination)"
+      [routerLink]="['/detail', destination.id]" >
+    <span class="badge">{{ destination.id }}</span>
+    <span>{{ destination.name }}</span>
+    <span>{{ destination.country }}</span>
+  </li>
+</ul>
