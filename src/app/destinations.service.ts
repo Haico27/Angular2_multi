@@ -17,7 +17,8 @@ export class DestinationsService {
   getDestinations(): Promise<Destination[]> {
     return this.http.get(this.destinationsUrl)
                 .toPromise()
-                .then(response => response.json() as Destination[])
+                .then(response => response.json() as Destination[]
+              )
                 .catch(this.handleError);
   }
 
@@ -32,7 +33,8 @@ export class DestinationsService {
     const url = `${this.destinationsUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Destination)
+      .then(response => console.log(response)//response.json() as Destination
+    )
       .catch(this.handleError);
   }
 }
