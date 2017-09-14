@@ -30,10 +30,10 @@ export class DestinationsService {
   }
 
   getDestination(id: number): Promise<Destination> {
-    const url = `${this.destinationsUrl}/${id}`;
-    return this.http.get(url)
+    return this.http.get(this.destinationsUrl)
       .toPromise()
-      .then(response => console.log(response)//response.json() as Destination
+      .then(response => //console.log(response.json())
+        response.json().find(destination => destination.id === id)
     )
       .catch(this.handleError);
   }

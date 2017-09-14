@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Get database
+// Get database connection
 const mysql = require('mysql');
 function getConnection() {
   const connection = mysql.createConnection({
@@ -13,22 +13,12 @@ function getConnection() {
   return connection;
 }
 
-// const destinations = [
-//       { id: 0, name: 'Serengeti', country: 'Tanzania' },
-//       { id: 11, name: 'Ganesh Talai', country: 'India' },
-//       { id: 12, name: 'Melbourne', country: 'Australia' },
-//       { id: 13, name: 'Tel Aviv', country: 'Israel' },
-//       { id: 14, name: 'Istanbul', country: 'Turkey' },
-//       { id: 15, name: 'San Francisco', country: 'United States' },
-//       { id: 16, name: 'Lausanne', country: 'Switzerland' },
-//       { id: 17, name: 'Berlin', country: 'Germany' }
-//     ];
-
 /* GET api listing. */
 router.get('/', (req, res) => {
   res.send('api works');
 });
 
+//GET destinations from database
 router.get('/destinations', (req, res) => {
   const connection = getConnection();
   connection.connect();
