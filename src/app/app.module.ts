@@ -9,14 +9,17 @@ import { AppComponent } from './app.component';
 import { DestinationsComponent } from './destinations/destinations.component';
 
 import { DestinationsService } from './destinations.service';
-import { DestinationDetailComponent } from './destination-detail/destination-detail.component'
+import { DestinationDetailComponent } from './destination-detail/destination-detail.component';
+
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DestinationsComponent,
-    DestinationDetailComponent
+    DestinationDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
