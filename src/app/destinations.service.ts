@@ -17,8 +17,7 @@ export class DestinationsService {
   getDestinations(): Promise<Destination[]> {
     return this.http.get(this.destinationsUrl)
                 .toPromise()
-                .then(response => response.json() as Destination[]
-              )
+                .then(response => response.json() as Destination[])
                 .catch(this.handleError);
   }
 
@@ -30,11 +29,12 @@ export class DestinationsService {
   }
 
   getDestination(id: number): Promise<Destination> {
+
+
     return this.http.get(this.destinationsUrl)
       .toPromise()
       .then(response => //console.log(response.json())
-        response.json().find(destination => destination.id === id)
-    )
-      .catch(this.handleError);
+        response.json().find(destination => destination.id === id))
+    .catch(this.handleError);
   }
 }
