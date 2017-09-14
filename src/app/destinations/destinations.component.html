@@ -1,3 +1,11 @@
+<div>
+  <label>Enter destination: </label> <input #destinationName />
+  <button (click)="add(destinationName.value); destinationName.value = ''">
+    Add
+  </button>
+</div>
+
+
 <div class="grid grid-pad">
   <a *ngFor="let destination of destinations"
       (click)="onSelect(destination)"

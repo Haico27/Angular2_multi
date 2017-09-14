@@ -33,4 +33,6 @@ router.get('/destinations', (req, res) => {
   connection.end();
 })
 
+
+
 module.exports = router;

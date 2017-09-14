@@ -29,4 +29,8 @@ export class DestinationsComponent implements OnInit  {
     this.selectedDestination = destination;
   }
 
+  add(name: string): void {
+    console.log("this button should add the entered destination to the database");
+  }
+
 }
