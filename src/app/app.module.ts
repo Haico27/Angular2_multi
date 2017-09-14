@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DestinationsComponent } from './destinations/destinations.component';
 
-import { DestinationsService } from './destinations.service'
+import { DestinationsService } from './destinations.service';
+import { DestinationDetailComponent } from './destination-detail/destination-detail.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DestinationsComponent
+    DestinationsComponent,
+    DestinationDetailComponent
   ],
   imports: [
     BrowserModule,
