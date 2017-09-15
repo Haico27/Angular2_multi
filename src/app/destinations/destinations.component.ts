@@ -31,6 +31,9 @@ export class DestinationsComponent implements OnInit  {
 
   add(name: string): void {
     console.log("this button should add the entered destination to the database");
+    name = name.trim();
+    this.destinationsService.create(name)
+      .then(destination => { console.log(destination)})
   }
 
 }

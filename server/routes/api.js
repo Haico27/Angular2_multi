@@ -33,6 +33,17 @@ router.get('/destinations', (req, res) => {
   connection.end();
 })
 
-
+//POST destination in database
+router.post('/destination', function(req, res) {
+  const connection = getConnection();
+  connection.connect();
+  const newDestination = { name: req.body.name, country: "Netherlands" };
+  console.log('in server: ', req.body)
+  connection.query('INSERT INTO destinations SET ?', newDestination, function( err, result ) {
+    console.log('added ' + newDestination);
+    res.status(200).end();
+  });
+  connection.end();
+});
 
 module.exports = router;
