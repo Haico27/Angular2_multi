@@ -10,7 +10,7 @@ import { Destination } from './destination';
 @Injectable()
 
 export class DestinationsService {
-  private headers = new Headers({ 'Content-Type': 'application-json' });
+  private headers = new Headers({ 'Content-Type': 'application/json' });
   private destinationsUrl = 'api/destinations'; //url to web-api
 
   constructor( private http: Http) { }
@@ -41,7 +41,8 @@ export class DestinationsService {
     console.log('in destinationsService, Name: ', name);
     return this.http.post('api/destination', JSON.stringify({ name: name }), {headers: this.headers} )
             .toPromise()
-            .then(res => res.json() as Destination)
+            .then(res => console.log(res)//res.json() as Destination
+          )
             .catch(this.handleError);
   }
 }
