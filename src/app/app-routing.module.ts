@@ -1,8 +1,8 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DestinationsComponent }      from './destinations/destinations.component';
-import { DestinationDetailComponent }  from './destination-detail/destination-detail.component';
+import { DestinationsComponent }      from './destinations/destinations/destinations.component';
+import { DestinationDetailComponent }  from './destinations/destination-detail/destination-detail.component';
 
 import { HomeComponent } from './home/home.component';
 

@@ -7,13 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DestinationsComponent } from './destinations/destinations.component';
+import { DestinationsComponent } from './destinations/destinations/destinations.component';
 
-import { destinationService } from './destination.service';
-import { DestinationDetailComponent } from './destination-detail/destination-detail.component';
+import { destinationService } from './destinations/destination.service';
+import { DestinationDetailComponent } from './destinations/destination-detail/destination-detail.component';
 
 import { HomeComponent } from './home/home.component';
-import { DestinationFormComponent } from './destination-form/destination-form.component';
+import { DestinationFormComponent } from './destinations/destination-form/destination-form.component';
 
 
 @NgModule({
