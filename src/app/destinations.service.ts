@@ -37,12 +37,11 @@ export class DestinationsService {
     .catch(this.handleError);
   }
 
-  create(name: string): Promise<Destination> {
-    console.log('in destinationsService, Name: ', name);
-    return this.http.post('api/destination', JSON.stringify({ name: name }), {headers: this.headers} )
+  create(model: {}): Promise<Destination> {
+    console.log("function in DestinationsService is activated. Model: ", model)
+    return this.http.post('api/destination', JSON.stringify(model), { headers: this.headers} )
             .toPromise()
-            .then(res => console.log(res)//res.json() as Destination
-          )
+            .then(res => console.log(res))
             .catch(this.handleError);
   }
 }

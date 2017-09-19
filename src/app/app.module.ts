@@ -12,6 +12,7 @@ import { DestinationsService } from './destinations.service';
 import { DestinationDetailComponent } from './destination-detail/destination-detail.component';
 
 import { HomeComponent } from './home/home.component';
+import { DestinationFormComponent } from './destination-form/destination-form.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     DestinationsComponent,
     DestinationDetailComponent,
-    HomeComponent
+    HomeComponent,
+    DestinationFormComponent
   ],
   imports: [
     BrowserModule,

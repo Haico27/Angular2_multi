@@ -1,5 +1,7 @@
 export class Destination {
-  id: number;
-  name: string;
-  country: string;
+
+  constructor(
+    public name: string,
+    public country: string,
+  ) { }
 }

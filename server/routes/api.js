@@ -37,7 +37,7 @@ router.get('/destinations', (req, res) => {
 router.post('/destination', function(req, res) {
   const connection = getConnection();
   connection.connect();
-  const newDestination = { name: req.body.name, country: "Netherlands" };
+  const newDestination = { name: req.body.name, country: req.body.country };
   console.log('in server: ', req.body)
   console.log('req.headers in server: ', req.headers)
   connection.query('INSERT INTO destinations SET ?', newDestination, function( err, result ) {
