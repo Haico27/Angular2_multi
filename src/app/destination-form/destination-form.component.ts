@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 
 import { Destination } from '../destination';
 
-import { DestinationsService } from '../destinations.service'
+import { destinationService } from '../destination.service'
 
 @Component({
-  selector: 'app-destination-form',
+  selector: 'destination-form',
   templateUrl: './destination-form.component.html',
   styleUrls: ['./destination-form.component.css']
 })
 export class DestinationFormComponent {
 
-  //constructor that injects DestinationsService into the destinationsService-property
-  constructor( private destinationsService: DestinationsService) { }
+  //constructor that injects destinationService into the destinationService-property
+  constructor( private destinationService: destinationService) { }
 
   model = new Destination('', '');
 
@@ -21,7 +21,7 @@ export class DestinationFormComponent {
   onSubmit(): void {
     console.log("onSubmit() function in destination-form component activated! Data: ", this.model)
     console.log('this.model', this.model.name, this.model.country);
-    this.destinationsService.create(this.model)
+    this.destinationService.create(this.model)
         .then(destination => console.log(destination))
 
 

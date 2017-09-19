@@ -9,7 +9,7 @@ import { Destination } from './destination';
 //Decorator that tells TypeScript to emit metadata about the service
 @Injectable()
 
-export class DestinationsService {
+export class destinationService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private destinationsUrl = 'api/destinations'; //url to web-api
 
@@ -38,7 +38,7 @@ export class DestinationsService {
   }
 
   create(model: {}): Promise<Destination> {
-    console.log("function in DestinationsService is activated. Model: ", model)
+    console.log("function in destinationService is activated. Model: ", model)
     return this.http.post('api/destination', JSON.stringify(model), { headers: this.headers} )
             .toPromise()
             .then(res => console.log(res))

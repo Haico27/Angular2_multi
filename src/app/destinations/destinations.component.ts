@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Destination } from '../destination'
 
-import { DestinationsService } from '../destinations.service'
+import { destinationService } from '../destination.service'
 
 @Component({
   selector: 'app-destinations',
@@ -14,11 +14,11 @@ export class DestinationsComponent implements OnInit  {
   destinations: Destination[];
   selectedDestination: Destination;
 
-  //constructor that injects DestinationsService into the destinationsService-property
-  constructor( private destinationsService: DestinationsService) { }
+  //constructor that injects destinationService into the destinationService-property
+  constructor( private destinationService: destinationService) { }
 
   getDestinations(): void {
-    this.destinationsService.getDestinations().then(destinations => this.destinations = destinations);
+    this.destinationService.getDestinations().then(destinations => this.destinations = destinations);
   }
 
   ngOnInit(): void {

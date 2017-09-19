@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DestinationsComponent } from './destinations/destinations.component';
 
-import { DestinationsService } from './destinations.service';
+import { destinationService } from './destination.service';
 import { DestinationDetailComponent } from './destination-detail/destination-detail.component';
 
 import { HomeComponent } from './home/home.component';
@@ -31,7 +31,7 @@ import { DestinationFormComponent } from './destination-form/destination-form.co
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [DestinationsService],
+  providers: [destinationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
