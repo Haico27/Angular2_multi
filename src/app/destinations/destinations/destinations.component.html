@@ -8,7 +8,7 @@
         (click)="onSelect(destination)"
         [routerLink]="['/detail', destination.id]"
         class="card text-white" >
-        <img class="card-img" src="https://a4.odistatic.net/images/landingpages/vacation/640x480/berlin_640x480.jpg">
+        <img class="card-img" src="{{ destination.imageUrl }}">
         <div class="card-img-overlay">
           <h4>{{ destination.name }}</h4>
           <h4>{{ destination.country }}</h4>

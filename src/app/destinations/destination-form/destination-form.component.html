@@ -10,7 +10,7 @@
               #name="ngModel">
       <div [hidden]="name.valid || name.pristine"
             class="alert alert-danger">
-            Enter the name of your destination
+            Name of destination is required
       </div>
     </div>
 
@@ -23,7 +23,20 @@
               #country="ngModel">
       <div [hidden]="country.valid || country.pristine"
             class="alert alert-danger">
-            Enter the country of your destination
+            Country of destination is required
+      </div>
+    </div>
+
+    <div>
+      <label for="imageUrl">Upload image: </label>
+      <input type="text" class="form-control" id="imageUrl"
+            required
+            placeholder="Enter URL of image"
+            [(ngModel)]="model.imageUrl" name="imageUrl"
+            #imageUrl="ngModel"/>
+      <div [hidden]="imageUrl.valid || imageUrl.pristine"
+            class="alert alert-danger">
+            URL of image is required
       </div>
     </div>
 
