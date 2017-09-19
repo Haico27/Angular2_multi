@@ -11,6 +11,7 @@ import { destinationService } from '../destination.service'
 })
 
 export class DestinationsComponent implements OnInit  {
+  title = "Add your favourite destinations here!";
   destinations: Destination[];
   selectedDestination: Destination;
 
