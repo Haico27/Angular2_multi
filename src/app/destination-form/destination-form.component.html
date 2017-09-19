@@ -1,22 +1,33 @@
-<div>
+<div class="container">
   <h2>Enter destination</h2>
-  {{ diagnostic }}
   <form (ngSubmit)="onSubmit()" #destinationForm="ngForm">
-    <div>
-      <label>Name: </label>
-      <input type="text" id="name"
-      required
-      [(ngModel)]="model.name" name="name">
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text" class="form-control" id="name"
+              required
+              placeholder="E.g. name of city, lake, area, forest, province"
+              [(ngModel)]="model.name" name="name"
+              #name="ngModel">
+      <div [hidden]="name.valid || name.pristine"
+            class="alert alert-danger">
+            Enter the name of your destination
+      </div>
     </div>
 
-    <div>
-      <label>Country: </label>
-      <input type="text" id="country"
-      required
-      [(ngModel)]="model.country" name="country">
+    <div class="form-group">
+      <label for="country">Country: </label>
+      <input type="text" class="form-control" id="country"
+              required
+              placeholder="Country of your destination"
+              [(ngModel)]="model.country" name="country"
+              #country="ngModel">
+      <div [hidden]="country.valid || country.pristine"
+            class="alert alert-danger">
+            Enter the country of your destination
+      </div>
     </div>
 
-    <button type="submit">Add</button>
+    <button type="submit" class="btn btn-success" [disabled]="!destinationForm.form.valid">Add destination</button>
 
   </form>
 </div>
