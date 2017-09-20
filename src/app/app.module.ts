@@ -14,6 +14,7 @@ import { DestinationDetailComponent } from './destinations/destination-detail/de
 
 import { HomeComponent } from './home/home.component';
 import { DestinationFormComponent } from './destinations/destination-form/destination-form.component';
+import { UsersComponent } from './users/users/users.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DestinationFormComponent } from './destinations/destination-form/destin
     DestinationsComponent,
     DestinationDetailComponent,
     HomeComponent,
-    DestinationFormComponent
+    DestinationFormComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

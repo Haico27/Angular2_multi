@@ -6,7 +6,7 @@
 <div class="container">
     <a *ngFor="let destination of destinations"
         (click)="onSelect(destination)"
-        [routerLink]="['/detail', destination.id]"
+        [routerLink]="['/destination', destination.id]"
         class="card text-white" >
         <img class="card-img" src="{{ destination.imageUrl }}">
         <div class="card-img-overlay">

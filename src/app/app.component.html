@@ -1,8 +1,16 @@
 
-  <nav class="navbar navbar-dark bg-dark justify-content-start">
-    <a routerLink="/home"
-      routerLinkActive="active">Home</a>
-    <a routerLink="/destinations"
-      routerLinkActive="active">Destinations</a>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="justify-content-start">
+      <a routerLink="/home"
+        routerLinkActive="active">Home</a>
+      <a routerLink="/destinations"
+        routerLinkActive="active">Destinations</a>
+    </div>
+    <div class="justify-content-end">
+      <a routerLink="/register"
+          routerLinkActive="active">Register</a>
+    </div>
   </nav>
+
+
   <router-outlet></router-outlet>
