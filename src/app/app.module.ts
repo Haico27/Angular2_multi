@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { DestinationsComponent } from './destinations/destinations/destinations.component';
 
 import { destinationService } from './destinations/destination.service';
+import { userService } from './users/user.service';
 import { DestinationDetailComponent } from './destinations/destination-detail/destination-detail.component';
 
 import { HomeComponent } from './home/home.component';
@@ -33,7 +34,10 @@ import { UsersComponent } from './users/users/users.component';
     NgbModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [destinationService],
+  providers: [
+              destinationService,
+              userService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,73 @@
-<p>
-  users works!
-</p>
+<div class="container">
+  <h1>Register</h1>
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">First name: </label>
+      <input type="text" class="form-control" id="firstName"
+              required
+              placeholder="Enter your first name"
+              [(ngModel)]="model.firstName" name="firstName"
+              #firstName="ngModel">
+      <div [hidden]="firstName.valid || firstName.pristine"
+            class="alert alert-danger">
+            First name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last name: </label>
+      <input type="text" class="form-control" id="lastName"
+              required
+              placeholder="Enter your last name"
+              [(ngModel)]="model.lastName" name="lastName"
+              #lastName="ngModel">
+      <div [hidden]="lastName.valid || lastName.pristine"
+            class="alert alert-danger">
+            Last name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input type="email" class="form-control" id="email"
+              required
+              placeholder="Enter your email address"
+              [(ngModel)]="model.email" name="email"
+              #email="ngModel">
+      <div [hidden]="email.valid || email.pristine"
+            class="alert alert-danger">
+            Email address is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password: </label>
+      <input type="password" class="form-control" id="password"
+              required
+              placeholder="Choose a password"
+              [(ngModel)]="model.password" name="password"
+              #password="ngModel">
+      <div [hidden]="password.valid || password.pristine"
+            class="alert alert-danger">
+            Password is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="passwordRepeat">Repeat password: </label>
+      <input type="password" class="form-control" id="passwordRepeat"
+              required
+              placeholder="Repeat your password"
+              [(ngModel)]="model.passwordRepeat" name="passwordRepeat"
+              #passwordRepeat="ngModel">
+      <div [hidden]="passwordRepeat.valid || passwordRepeat.pristine"
+            class="alert alert-danger">
+            Passwords do not match
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid">Register</button>
+
+  </form>
+</div>

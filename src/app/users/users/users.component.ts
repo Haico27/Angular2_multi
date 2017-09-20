@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { userService } from '../user.service'
+import { User } from '../user'
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
 
-  constructor() { }
+  constructor(private userService: userService ) { }
 
-  ngOnInit() {
+  model = new User('', '', '', '');
+
+  register(): void {
+    console.log('register function called in users.component')
+    this.userService.create(this.model);
   }
-
 }
