@@ -13,8 +13,7 @@ export class UsersComponent {
 
   model = new User('', '', '', '');
 
-  register(): void {
-    console.log('register function called in users.component')
-    this.userService.create(this.model);
+  registerUser(): void {
+    this.userService.create(this.model)
   }
 }

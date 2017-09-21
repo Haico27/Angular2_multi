@@ -47,4 +47,18 @@ router.post('/destination', function(req, res) {
   connection.end();
 });
 
+//POST user in database
+router.post('/register', function(req, res) {
+  const connection = getConnection();
+  connection.connect();
+  const newUser = { firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, password: req.body.password };
+  console.log('in server: ', req.body)
+  console.log('req.headers in server: ', req.headers)
+  connection.query('INSERT INTO users SET ?', newUser, function( err, result ) {
+    console.log('added ' + newUser);
+    res.status(200).end();
+  });
+  connection.end();
+});
+
 module.exports = router;
