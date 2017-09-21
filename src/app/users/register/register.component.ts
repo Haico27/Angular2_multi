@@ -3,11 +3,11 @@ import { userService } from '../user.service'
 import { User } from '../user'
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'register-user',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class UsersComponent {
+export class RegisterComponent {
 
   constructor(private userService: userService ) { }
 

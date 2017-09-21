@@ -15,7 +15,7 @@ import { DestinationDetailComponent } from './destinations/destination-detail/de
 
 import { HomeComponent } from './home/home.component';
 import { DestinationFormComponent } from './destinations/destination-form/destination-form.component';
-import { UsersComponent } from './users/users/users.component';
+import { RegisterComponent } from './users/register/register.component';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { UsersComponent } from './users/users/users.component';
     DestinationDetailComponent,
     HomeComponent,
     DestinationFormComponent,
-    UsersComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
