@@ -28,4 +28,12 @@ export class userService {
           .catch(this.handleError);
   }
 
+  login(model: {}): Promise<User> {
+    console.log("login function in user.service. Model: ", model)
+    return this.http.post('api/login', JSON.stringify(model), { headers: this.headers})
+          .toPromise()
+          .then(response => response.json().length > 0 ? console.log("login successfull!") : console.log("login failed"))
+          .catch(this.handleError);
+  }
+
 }

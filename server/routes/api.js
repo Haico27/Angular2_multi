@@ -61,4 +61,16 @@ router.post('/register', function(req, res) {
   connection.end();
 });
 
+//POST request for login functionality
+router.post('/login', function(req, res) {
+  const connection = getConnection();
+  connection.connect();
+  var credentials = [req.body.email, req.body.password];
+  connection.query("SELECT email FROM users WHERE email = ? AND password = ?", credentials, function(err, result) {
+    res.send(result);
+    res.status(200).end();
+  });
+  connection.end();
+})
+
 module.exports = router;
