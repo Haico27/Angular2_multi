@@ -14,16 +14,17 @@ export class AuthenticationService {
   login(email: string, password: string) {
     return this.http.post('api/authenticate', JSON.stringify({ email: email, password: password }), {headers: this.headers})
             .toPromise()
-            .then(response => {
+            .then((response: Response) => {
                 //store the by the backend returned userdata in a variable
-                let user = response.json();
+                let user = JSON.stringify(response.json()[0])
 
                 //if response.json contains data, put the returned userdata in localstorage
                 if (response.json().length > 0) {
                     localStorage.setItem('currentUser', user);
+                    console.log('localStorage in AuthenticationService: ', JSON.parse(localStorage.getItem('currentUser')).firstName)
                 }
 
-                console.log('currentUser in localStorage in AuthenticationService: ', localStorage);
+
 
                 return user;
 

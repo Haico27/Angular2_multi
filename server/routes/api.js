@@ -67,6 +67,7 @@ router.post('/authenticate', function(req, res) {
   connection.connect();
   var credentials = [req.body.email, req.body.password];
   connection.query("SELECT id, firstName, lastName, email FROM users WHERE email = ? AND password = ?", credentials, function(err, result) {
+    console.log("result in server: ", result)
     res.send(result);
     res.status(200).end();
   });
