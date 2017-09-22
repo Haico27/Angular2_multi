@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { userService } from '../../services/user.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../models/user';
 
 @Component({
@@ -9,12 +9,12 @@ import { User } from '../../models/user';
 })
 export class LoginComponent {
 
-  constructor(private userService: userService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
-  model = new User('', '', '', '');
+  model: any = {};
 
   logIn(): void {
-    this.userService.login(this.model)
+    this.authenticationService.login(this.model.email, this.model.password);
   }
 
 }

@@ -13,6 +13,7 @@ import { destinationService } from './services/destination.service';
 import { userService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
+import { AuthenticationService } from './services/authentication.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { DestinationFormComponent } from './components/destination-form/destination-form.component';
@@ -42,7 +43,8 @@ import { AlertComponent } from './components/alert/alert.component';
   providers: [
               destinationService,
               userService,
-              AlertService
+              AlertService,
+              AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
