@@ -11,12 +11,14 @@ import { DestinationsComponent } from './components/destinations/destinations.co
 
 import { destinationService } from './services/destination.service';
 import { userService } from './services/user.service';
+import { AlertService } from './services/alert.service';
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { DestinationFormComponent } from './components/destination-form/destination-form.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     DestinationFormComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [
               destinationService,
-              userService
+              userService,
+              AlertService
   ],
   bootstrap: [AppComponent]
 })

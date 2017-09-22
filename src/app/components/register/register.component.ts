@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { userService } from '../../services/user.service';
+import { AlertService } from '../../services/alert.service';
 import { User } from '../../models/user';
+
 
 @Component({
   selector: 'register-user',
@@ -9,11 +13,27 @@ import { User } from '../../models/user';
 })
 export class RegisterComponent {
 
-  constructor(private userService: userService ) { }
+  constructor(
+    private router: Router,
+    private userService: userService,
+    private alertService: AlertService ) { }
 
-  model = new User('', '', '', '');
+  model: any = {};
+  loading = false;
 
   registerUser(): void {
+    this.loading = true;
     this.userService.create(this.model)
+        .subscribe(
+          data => {
+            //set success message and pass true parameter to persist the message after redirecting to the login page;
+            this.alertService.success('Registration successful', true);
+            this.router.navigate(['/login']);
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+          }
+        )
   }
 }

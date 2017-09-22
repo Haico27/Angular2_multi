@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+
+import 'rxjs/add/operator/map'
 
 import { User } from '../models/user';
 
@@ -20,12 +22,9 @@ export class userService {
     return Promise.reject(error.message || error)
   }
 
-  create(model: {}): Promise<User> {
-    console.log("create function in user.service. Model: ", model)
-    return this.http.post('api/register', JSON.stringify(model), { headers: this.headers})
-          .toPromise()
-          .then(res => console.log(res))
-          .catch(this.handleError);
+
+  create(user: User): any {
+    return this.http.post('api/register', JSON.stringify(user), { headers: this.headers } )
   }
 
   login(model: {}): Promise<User> {
