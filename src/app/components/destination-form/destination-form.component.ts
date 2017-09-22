@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { Destination } from '../destination';
+import { Destination } from '../../models/destination';
 
-import { destinationService } from '../destination.service'
+import { destinationService } from '../../services/destination.service';
 
 @Component({
   selector: 'destination-form',

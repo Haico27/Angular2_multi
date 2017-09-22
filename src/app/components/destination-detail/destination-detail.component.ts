@@ -4,9 +4,9 @@ import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
-import { destinationService } from '../destination.service';
+import { destinationService } from '../../services/destination.service';
 
-import { Destination } from '../destination';
+import { Destination } from '../../models/destination';
 
 @Component({
   selector: 'destination-detail',

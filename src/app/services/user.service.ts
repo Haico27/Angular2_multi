@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { User } from './user';
+import { User } from '../models/user';
 
 @Injectable()
 
@@ -32,7 +32,10 @@ export class userService {
     console.log("login function in user.service. Model: ", model)
     return this.http.post('api/login', JSON.stringify(model), { headers: this.headers})
           .toPromise()
-          .then(response => response.json().length > 0 ? console.log("login successfull!") : console.log("login failed"))
+          .then(response =>
+            response.json().length > 0 ?
+            console.log("login successfull!") :
+            console.log("login failed"))
           .catch(this.handleError);
   }
 

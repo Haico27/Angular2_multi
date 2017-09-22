@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Destination } from './destination';
+import { Destination } from '../models/destination';
 
 
 //Decorator that tells TypeScript to emit metadata about the service

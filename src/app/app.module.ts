@@ -7,16 +7,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DestinationsComponent } from './destinations/destinations/destinations.component';
+import { DestinationsComponent } from './components/destinations/destinations.component';
 
-import { destinationService } from './destinations/destination.service';
-import { userService } from './users/user.service';
-import { DestinationDetailComponent } from './destinations/destination-detail/destination-detail.component';
+import { destinationService } from './services/destination.service';
+import { userService } from './services/user.service';
+import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 
-import { HomeComponent } from './home/home.component';
-import { DestinationFormComponent } from './destinations/destination-form/destination-form.component';
-import { RegisterComponent } from './users/register/register.component';
-import { LoginComponent } from './users/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { DestinationFormComponent } from './components/destination-form/destination-form.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
