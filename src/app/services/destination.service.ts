@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -18,7 +18,7 @@ export class destinationService {
   getDestinations(): Promise<Destination[]> {
     return this.http.get(this.destinationsUrl)
                 .toPromise()
-                .then(response => response.json() as Destination[])
+                .then((response: Response) => response.json() as Destination[])
                 .catch(this.handleError);
   }
 
@@ -32,7 +32,7 @@ export class destinationService {
   getDestination(id: number): Promise<Destination> {
     return this.http.get(this.destinationsUrl)
       .toPromise()
-      .then(response => //console.log(response.json())
+      .then((response: Response) => //console.log(response.json())
         response.json().find(destination => destination.id === id))
     .catch(this.handleError);
   }
