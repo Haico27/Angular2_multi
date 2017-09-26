@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -11,6 +11,8 @@ export class AuthenticationService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
+  @Output() getCurrentUser: EventEmitter<any> = new EventEmitter();
+
   login(email: string, password: string) {
     return this.http.post('api/authenticate', JSON.stringify({ email: email, password: password }), {headers: this.headers})
             .toPromise()
@@ -21,7 +23,8 @@ export class AuthenticationService {
                 //if response.json contains data, put the returned userdata in localstorage
                 if (response.json().length > 0) {
                     localStorage.setItem('currentUser', user);
-                    console.log('localStorage in AuthenticationService: ', JSON.parse(localStorage.getItem('currentUser')).firstName)
+                    this.getCurrentUser.emit(JSON.parse(localStorage.getItem('currentUser')));
+                    console.log('localStorage in AuthenticationService: ', JSON.parse(localStorage.getItem('currentUser')).firstName);
                 }
 
 
@@ -34,5 +37,6 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.getCurrentUser.emit(JSON.parse(localStorage.getItem('currentUser')))
   }
 }
