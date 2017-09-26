@@ -29,6 +29,6 @@ export class NavigationComponent {
 
     logout() {
       this.authenticationService.logout();
-      this.alertService.success("You logged out", true)
+      this.alertService.warning("You logged out", false)
     }
 }
