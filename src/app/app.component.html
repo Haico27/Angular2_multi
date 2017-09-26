@@ -6,11 +6,15 @@
       <a routerLink="/destinations"
         routerLinkActive="active">Destinations</a>
     </div>
-    <div class="justify-content-end">
+    <div *ngIf="!currentUser" class="justify-content-end">
       <a routerLink="/login"
           routerLinkActive="active">Log in</a>
       <a routerLink="/register"
           routerLinkActive="active">Register</a>
+    </div>
+    <div *ngIf="currentUser" class="justify-content-end">
+      <span>Welcome {{currentUser.firstName}}!</span>
+      <button type="button" class="btn" (click)="logout()">Log out</button>
     </div>
   </nav>
 
