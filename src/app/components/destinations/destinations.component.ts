@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Destination } from '../../models/destination';
 
-import { destinationService } from '../../services/destination.service';
+import { DestinationService } from '../../services/destination.service';
 
 @Component({
   selector: 'app-destinations',
@@ -16,7 +16,7 @@ export class DestinationsComponent implements OnInit  {
   selectedDestination: Destination;
 
   //constructor that injects destinationService into the destinationService-property
-  constructor( private destinationService: destinationService) { }
+  constructor( private destinationService: DestinationService) { }
 
   getDestinations(): void {
     this.destinationService.getDestinations().then(destinations => this.destinations = destinations);

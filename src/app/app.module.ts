@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DestinationsComponent } from './components/destinations/destinations.component';
 
-import { destinationService } from './services/destination.service';
+import { DestinationService } from './services/destination.service';
 import { userService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
@@ -43,7 +43,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     AppRoutingModule
   ],
   providers: [
-              destinationService,
+              DestinationService,
               userService,
               AlertService,
               AuthenticationService

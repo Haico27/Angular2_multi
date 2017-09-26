@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
-import { destinationService } from '../../services/destination.service';
+import { DestinationService } from '../../services/destination.service';
 
 import { Destination } from '../../models/destination';
 
@@ -16,7 +16,7 @@ import { Destination } from '../../models/destination';
 
 export class DestinationDetailComponent implements OnInit {
   constructor(
-    private destinationService: destinationService,
+    private destinationService: DestinationService,
     private route: ActivatedRoute,
     private location: Location
   ) { }

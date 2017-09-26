@@ -9,7 +9,7 @@ import { Destination } from '../models/destination';
 //Decorator that tells TypeScript to emit metadata about the service
 @Injectable()
 
-export class destinationService {
+export class DestinationService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private destinationsUrl = 'api/destinations'; //url to web-api
 
