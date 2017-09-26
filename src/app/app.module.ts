@@ -20,6 +20,7 @@ import { DestinationFormComponent } from './components/destination-form/destinat
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AlertComponent } from './components/alert/alert.component';
     DestinationFormComponent,
     RegisterComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

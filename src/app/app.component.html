@@ -1,22 +1,5 @@
 
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="justify-content-start">
-      <a routerLink="/home"
-        routerLinkActive="active">Home</a>
-      <a routerLink="/destinations"
-        routerLinkActive="active">Destinations</a>
-    </div>
-    <div *ngIf="!currentUser" class="justify-content-end">
-      <a routerLink="/login"
-          routerLinkActive="active">Log in</a>
-      <a routerLink="/register"
-          routerLinkActive="active">Register</a>
-    </div>
-    <div *ngIf="currentUser" class="justify-content-end">
-      <span>Welcome {{currentUser.firstName}}!</span>
-      <button type="button" class="btn" (click)="logout()">Log out</button>
-    </div>
-  </nav>
+  <navigation-bar></navigation-bar>
 
   <div>
     <alert></alert>
