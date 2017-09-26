@@ -7,7 +7,7 @@ import { User } from '../models/user';
 
 @Injectable()
 
-export class userService {
+export class UserService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private registerUrl = 'api/registerUser'; //url to web-api
 

@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { DestinationsComponent } from './components/destinations/destinations.component';
 
 import { DestinationService } from './services/destination.service';
-import { userService } from './services/user.service';
+import { UserService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 import { AuthenticationService } from './services/authentication.service';
@@ -44,7 +44,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   ],
   providers: [
               DestinationService,
-              userService,
+              UserService,
               AlertService,
               AuthenticationService
   ],
