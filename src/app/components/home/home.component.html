@@ -1,5 +1,7 @@
 
 <div class="container">
   <h1>Welcome to the homepage!</h1>
-  <h2>You are logged in as {{ currentUser.firstName }}</h2>
+  <div *ngIf="currentUser">
+    <h2>You are logged in as {{ currentUser.firstName }}</h2>
+  </div>
 </div>
