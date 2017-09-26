@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { AlertService } from '../../services/alert.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'navigation-bar',
@@ -31,4 +32,6 @@ export class NavigationComponent {
       this.authenticationService.logout();
       this.alertService.warning("You logged out", false)
     }
+
+
 }
