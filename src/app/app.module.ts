@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { WeatherComponent } from './components/weather/weather.component';
+import { WeatherApiService } from './services/weather-api.service';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { WeatherComponent } from './components/weather/weather.component';
               DestinationService,
               UserService,
               AlertService,
-              AuthenticationService
+              AuthenticationService,
+              WeatherApiService
   ],
   bootstrap: [AppComponent]
 })

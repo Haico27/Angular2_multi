@@ -6,7 +6,7 @@
     <input [(ngModel)] = "destination.name" placeholder="name" />
   </div>
 
-<weather></weather>
+<weather [description]="Weather?.description"></weather>
 
   <button (click)="goBack()">Back</button>
 </div>

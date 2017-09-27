@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { WeatherApiService } from '../../services/weather-api.service';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'weather',
   templateUrl: './weather.component.html'
 })
 
-export class WeatherComponent {
-  public weather: Weather;
+export class WeatherComponent implements OnInit {
+  @Input() description: string;
 
-  constructor() {
-    this.weather = { temp: "12", summary: "Cold", city: "Berlin"}
+  constructor( private weatherapiService: WeatherApiService ) { }
+
+  getWeatherDetails() {
+    this.weatherapiService.getWeatherDetails().toPromise().then(response => console.log("in weathercomponent, data isn't transmitted to here though yet: ", response));
   }
-}
 
-interface Weather {
-  temp: string;
-  summary: string;
-  city: string;
+  ngOnInit(): any {
+    this.getWeatherDetails()
+  }
+
+
 }
