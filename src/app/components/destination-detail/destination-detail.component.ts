@@ -8,6 +8,7 @@ import { DestinationService } from '../../services/destination.service';
 
 import { Destination } from '../../models/destination';
 
+
 @Component({
   selector: 'destination-detail',
   templateUrl: './destination-detail.component.html',

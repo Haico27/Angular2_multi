@@ -21,6 +21,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { WeatherComponent } from './components/weather/weather.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     RegisterComponent,
     LoginComponent,
     AlertComponent,
-    NavigationComponent
+    NavigationComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
