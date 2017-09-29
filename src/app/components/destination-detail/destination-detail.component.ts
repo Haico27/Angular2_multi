@@ -10,6 +10,7 @@ import { Destination } from '../../models/destination';
 
 
 
+
 @Component({
   selector: 'destination-detail',
   templateUrl: './destination-detail.component.html',
@@ -17,10 +18,12 @@ import { Destination } from '../../models/destination';
 })
 
 export class DestinationDetailComponent implements OnInit {
+
   constructor(
     private destinationService: DestinationService,
     private route: ActivatedRoute,
     private location: Location
+
   ) { }
 
   ngOnInit(): void {

@@ -11,11 +11,22 @@ import 'rxjs/add/operator/map';
 export class WeatherApiService {
   private baseUrl = 'http://api.openweathermap.org/data/2.5';
 
+
   constructor( private http: Http) { }
 
-  getWeatherDetails(): Observable<any> {
+  getWeatherDetails() {
     return this.http.get(`${this.baseUrl}/weather?q=Berlin&appid=2b8db39adb44b11721c508294db0b312`)
-        .map(response => console.log("response in weatherAPIService: ", response.json()));
   }
+
+  // getWeatherDetails(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/weather?q=Berlin&appid=2b8db39adb44b11721c508294db0b312`)
+  //       .map(response => response.json());
+  // }
+
+}
+
+export interface Weather {
+  main: string;
+  description: string;
 
 }
