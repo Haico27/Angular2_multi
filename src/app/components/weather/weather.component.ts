@@ -15,7 +15,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class WeatherComponent implements OnInit {
 
-  public weather: Weather;
+  public weather: Weather | null;
 
   constructor(
     private weatherapiService: WeatherApiService,
