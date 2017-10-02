@@ -10,7 +10,9 @@ import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'weather-widget',
-  templateUrl: './weather-widget.component.html'
+  templateUrl: './weather-widget.component.html',
+  styleUrls: ['./weather-widget.component.css']
+
 })
 
 export class WeatherWidgetComponent implements OnInit {

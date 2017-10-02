@@ -23,7 +23,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
 import { WeatherApiService } from './services/weather-api.service';
-import { CurrentWeatherDescriptionComponent } from './components/current-weather-description/current-weather-description.component';
+import { WeatherCurrentDescriptionComponent } from './components/weather-current-description/weather-current-description.component';
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import { CurrentWeatherDescriptionComponent } from './components/current-weather
     AlertComponent,
     NavigationComponent,
     WeatherWidgetComponent,
-    CurrentWeatherDescriptionComponent
+    WeatherCurrentDescriptionComponent
   ],
   imports: [
     BrowserModule,
