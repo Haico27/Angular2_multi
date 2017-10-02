@@ -25,8 +25,7 @@ export class WeatherApiService {
 
 }
 
-export interface Weather {
-  main: string;
-  description: string;
+export interface CurrentWeather {
+  description?: string;
 
 }

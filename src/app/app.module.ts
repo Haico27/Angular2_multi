@@ -21,8 +21,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { WeatherComponent } from './components/weather/weather.component';
+import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
 import { WeatherApiService } from './services/weather-api.service';
+import { CurrentWeatherDescriptionComponent } from './components/current-weather-description/current-weather-description.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { WeatherApiService } from './services/weather-api.service';
     LoginComponent,
     AlertComponent,
     NavigationComponent,
-    WeatherComponent
+    WeatherWidgetComponent,
+    CurrentWeatherDescriptionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { WeatherApiService, Weather } from '../../services/weather-api.service';
+import { WeatherApiService, CurrentWeather } from '../../services/weather-api.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -9,13 +9,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'weather',
-  templateUrl: './weather.component.html'
+  selector: 'weather-widget',
+  templateUrl: './weather-widget.component.html'
 })
 
-export class WeatherComponent implements OnInit {
+export class WeatherWidgetComponent implements OnInit {
 
-  public weather: Weather | null;
+  @Input() currentWeather: CurrentWeather | null;
 
   constructor(
     private weatherapiService: WeatherApiService,
@@ -28,8 +28,8 @@ export class WeatherComponent implements OnInit {
   getWeatherDetails() {
     return this.weatherapiService.getWeatherDetails()
               .subscribe(data => {
-                this.weather = data.json().weather[0];
-                console.log("In weather-component: ", this.weather.description)
+                this.currentWeather = data.json().weather[0];
+                console.log("In weather-widget-component: ", this.currentWeather.description)
     })
   }
   // @Input() weather: Weather | null;
