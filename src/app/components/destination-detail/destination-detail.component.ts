@@ -18,7 +18,7 @@ import { Destination } from '../../models/destination';
 })
 
 export class DestinationDetailComponent implements OnInit {
-
+  @Input() destination: Destination;
 
   constructor(
     private destinationService: DestinationService,
@@ -38,5 +38,5 @@ export class DestinationDetailComponent implements OnInit {
     this.location.back();
   }
 
-  @Input() destination: Destination;
+
 }

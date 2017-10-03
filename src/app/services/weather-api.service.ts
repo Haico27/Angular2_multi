@@ -1,6 +1,7 @@
 import { Injectable, Inject, Input, forwardRef } from '@angular/core';
 import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { PoolingService } from './pooling.service'
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -10,18 +11,18 @@ import 'rxjs/add/operator/filter';
 @Injectable()
 
 export class WeatherApiService {
-  private baseUrl = 'http://api.openweathermap.org/data/2.5';
-
+  poolingInterval = 60000 * 60;
 
 
   constructor(
     private http: Http,
+    private poolingService: PoolingService,
     @Inject('WEATHER_CONFIG') public apiConfig: WeatherApiConfig
   ) { }
 
-  getWeatherDetails() {
-    return this.http.get(`${this.baseUrl}/weather?q=Berlin&appid=2b8db39adb44b11721c508294db0b312`)
-  }
+  // getWeatherDetails() {
+  //   return this.http.get(`${this.baseUrl}/weather?q=Berlin&appid=2b8db39adb44b11721c508294db0b312`)
+  // }
 
   getCurrentWeather(
     queryParams: WeatherQueryParams
@@ -41,9 +42,14 @@ export class WeatherApiService {
     console.log("requestOptions in callApi: ", requestOptions.params)
     const apiCall: Observable<any> =
         this.http.get(`${this.apiConfig.baseUrl}/${endpoint}`, requestOptions)
-                  .map(response => console.log("response.json in apiCall: ", response.json()))
-    console.log("apiCall in callApi function: ", apiCall);
-    return apiCall;
+                  .map(response =>  response.json())
+    console.log("this.wrapWithPoll(apiCall) in callApi function: ", this.wrapWithPoll(apiCall));
+    console.log("apiCall in callApi function: ", apiCall)
+    return this.wrapWithPoll(apiCall);
+  }
+
+  private wrapWithPoll(apiCall: Observable<any>) {
+    return this.poolingService.execute(() => apiCall, this.poolingInterval);
   }
 
   private getRequestOptions(queryParams: object) {

@@ -5,6 +5,7 @@ import { WeatherApiService, CurrentWeather, WeatherQueryParams } from '../../ser
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -17,7 +18,7 @@ import 'rxjs/add/operator/toPromise';
 export class WeatherWidgetComponent implements OnInit {
 
   @Input() currentWeather: CurrentWeather | null;
-  @Input('location') location: {};
+  @Input('destination') locationName: string;
 
   constructor(
     private weatherapiService: WeatherApiService,
@@ -33,8 +34,9 @@ export class WeatherWidgetComponent implements OnInit {
    }
 
    currentWeatherCall(): Observable<CurrentWeather> {
-     const params: WeatherQueryParams = Object.assign({}, { locationName: 'Berlin' });
-     console.log("currentWeatherCall function in weather-widget: ", params)
+     const params: WeatherQueryParams = Object.assign({}, { locationName: this.locationName });
+     console.log("in currentWeatherCall in weather-widget, locationName: ", this.locationName);
+     console.log("currentWeatherCall function in weather-widget: ", params);
      return this.weatherapiService.getCurrentWeather(params);
    }
 
