@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { WeatherApiService, CurrentWeather } from '../../services/weather-api.service';
+import { WeatherApiService, CurrentWeather, WeatherQueryParams } from '../../services/weather-api.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -12,54 +12,30 @@ import 'rxjs/add/operator/toPromise';
   selector: 'weather-widget',
   templateUrl: './weather-widget.component.html',
   styleUrls: ['./weather-widget.component.css']
-
 })
 
 export class WeatherWidgetComponent implements OnInit {
 
   @Input() currentWeather: CurrentWeather | null;
+  @Input('location') location: {};
 
   constructor(
     private weatherapiService: WeatherApiService,
    ) { }
 
-  ngOnInit() {
-    this.getWeatherDetails()
-  }
+   ngOnInit() {
+     this.getWeather()
 
-  getWeatherDetails() {
-    return this.weatherapiService.getWeatherDetails()
-              .subscribe(data => {
-                this.currentWeather = data.json().weather[0];
-                console.log("In weather-widget-component: ", this.currentWeather.description)
-    })
-  }
-  // @Input() weather: Weather | null;
-  // weather$: Observable<Weather>;
-  // subscriptionWeather: Subscription;
-  //
-  //
-  // constructor( private weatherapiService: WeatherApiService ) { }
-  //
-  // ngOnInit() {
-  //   this.getWeatherDetails();
-  //   console.log("in ngOnInit: ", this.weather)
-  // }
-  //
-  //
-  // getWeatherDetails(): void {
-  //   this.weather$ = this.weatherCall();
-  //   this.weather$.subscribe(data => {
-  //     this.weather = data;
-  //     console.log("data in weather.component: ", data)
-  //   });
-  // }
-  //
-  // weatherCall(): Observable<Weather> {
-  //   return this.weatherapiService.getWeatherDetails();
-  // }
+   }
 
+   getWeather(): void {
+     this.currentWeatherCall()
+   }
 
-
+   currentWeatherCall(): Observable<CurrentWeather> {
+     const params: WeatherQueryParams = Object.assign({}, { locationName: 'Berlin' });
+     console.log("currentWeatherCall function in weather-widget: ", params)
+     return this.weatherapiService.getCurrentWeather(params);
+   }
 
 }

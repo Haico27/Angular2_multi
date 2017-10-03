@@ -19,6 +19,7 @@ import { Destination } from '../../models/destination';
 
 export class DestinationDetailComponent implements OnInit {
 
+
   constructor(
     private destinationService: DestinationService,
     private route: ActivatedRoute,

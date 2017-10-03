@@ -22,8 +22,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
-import { WeatherApiService } from './services/weather-api.service';
+import { WeatherApiService, WeatherApiConfig } from './services/weather-api.service';
 import { WeatherCurrentDescriptionComponent } from './components/weather-current-description/weather-current-description.component';
+import { WeatherLocationComponent } from './components/weather-location/weather-location.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { WeatherCurrentDescriptionComponent } from './components/weather-current
     AlertComponent,
     NavigationComponent,
     WeatherWidgetComponent,
-    WeatherCurrentDescriptionComponent
+    WeatherCurrentDescriptionComponent,
+    WeatherLocationComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,11 @@ import { WeatherCurrentDescriptionComponent } from './components/weather-current
               UserService,
               AlertService,
               AuthenticationService,
-              WeatherApiService
+              WeatherApiService,
+              {
+                provide: 'WEATHER_CONFIG',
+                useClass: WeatherApiConfig
+              }
   ],
   bootstrap: [AppComponent]
 })
