@@ -20,11 +20,7 @@ export class WeatherApiService {
     @Inject('WEATHER_CONFIG') public apiConfig: WeatherApiConfig
   ) { }
 
-  // getWeatherDetails() {
-  //   return this.http.get(`${this.baseUrl}/weather?q=Berlin&appid=2b8db39adb44b11721c508294db0b312`)
-  // }
-
-  getCurrentWeather(
+  currentWeather(
     queryParams: WeatherQueryParams
   ): Observable<CurrentWeather> {
     console.log("mapCurrentWeatherResponse:  ", this.callApi(queryParams, '/weather').map(this.mapCurrentWeatherResponse.bind(this)) );
@@ -43,8 +39,8 @@ export class WeatherApiService {
     const apiCall: Observable<any> =
         this.http.get(`${this.apiConfig.baseUrl}/${endpoint}`, requestOptions)
                   .map(response =>  response.json())
-    console.log("this.wrapWithPoll(apiCall) in callApi function: ", this.wrapWithPoll(apiCall));
-    console.log("apiCall in callApi function: ", apiCall)
+                  .filter(el => !!el)
+    console.log("get-request in callApi function: ", apiCall)
     return this.wrapWithPoll(apiCall);
   }
 
@@ -99,7 +95,6 @@ export class WeatherApiService {
     console.log("weather in mapCurrentWeatherResponse function: ", weather)
     return weather;
   }
-
 
 }
 

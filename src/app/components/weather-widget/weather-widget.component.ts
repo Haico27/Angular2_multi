@@ -30,14 +30,14 @@ export class WeatherWidgetComponent implements OnInit {
    }
 
    getWeather(): void {
-     this.currentWeatherCall()
+     this.currentWeatherCall().subscribe(data => this.currentWeather = data);
    }
 
    currentWeatherCall(): Observable<CurrentWeather> {
      const params: WeatherQueryParams = Object.assign({}, { locationName: this.locationName });
      console.log("in currentWeatherCall in weather-widget, locationName: ", this.locationName);
      console.log("currentWeatherCall function in weather-widget: ", params);
-     return this.weatherapiService.getCurrentWeather(params);
+     return this.weatherapiService.currentWeather(params);
    }
 
 }
