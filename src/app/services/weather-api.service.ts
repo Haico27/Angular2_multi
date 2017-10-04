@@ -90,10 +90,17 @@ export class WeatherApiService {
     }
     const weather: CurrentWeather = {
       location: response.name,
-      description: response.weather[0].description
+      description: response.weather[0].description,
+      iconUrl: this.mapResponseToIconUrl(response)
     };
     console.log("weather in mapCurrentWeatherResponse function: ", weather)
     return weather;
+  }
+
+  protected mapResponseToIconUrl(
+    response: OpenWeatherMapCurrentWeatherResponse
+  ): string {
+    return `http://openweathermap.org/img/w/${response.weather[0].icon}.png`;
   }
 
 }
@@ -101,6 +108,7 @@ export class WeatherApiService {
 export interface CurrentWeather {
   description?: string;
   location?: string;
+  iconUrl?: string;
 }
 
 //OpenWeatherMapRequest

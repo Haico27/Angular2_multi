@@ -33,6 +33,7 @@ export class WeatherWidgetComponent implements OnInit {
      this.currentWeatherCall().subscribe(data => this.currentWeather = data);
    }
 
+   //calls the currentWeather function in the weatherapiService with the location of the destination as params
    currentWeatherCall(): Observable<CurrentWeather> {
      const params: WeatherQueryParams = Object.assign({}, { locationName: this.locationName });
      console.log("in currentWeatherCall in weather-widget, locationName: ", this.locationName);
