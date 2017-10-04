@@ -1,7 +1,8 @@
 import { Injectable, Inject, Input, forwardRef } from '@angular/core';
 import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { PoolingService } from './pooling.service'
+import { PoolingService } from './pooling.service';
+import { TemperatureScale } from '../components/weather-current-temperature/weather-current-temperature.component';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -77,6 +78,7 @@ export class WeatherApiService {
   ): OpenWeatherMapLocationRequest {
     const mapped: OpenWeatherMapLocationRequest = {
       q: params.locationName,
+      units: params.units ? this.mapUnits(params.units) : undefined,
     }
     console.log("mapped in mapQueryParams function: ", mapped)
     return mapped;
@@ -91,7 +93,8 @@ export class WeatherApiService {
     const weather: CurrentWeather = {
       location: response.name,
       description: response.weather[0].description,
-      iconUrl: this.mapResponseToIconUrl(response)
+      iconUrl: this.mapResponseToIconUrl(response),
+      temp: response.main.temp
     };
     console.log("weather in mapCurrentWeatherResponse function: ", weather)
     return weather;
@@ -103,21 +106,39 @@ export class WeatherApiService {
     return `http://openweathermap.org/img/w/${response.weather[0].icon}.png`;
   }
 
+  private mapUnits(unit: TemperatureScale) {
+    switch (unit) {
+      case TemperatureScale.CELCIUS:
+        return 'metric';
+      case TemperatureScale.FAHRENHEIT:
+        return 'imperial';
+      case TemperatureScale.KELVIN:
+        return;
+      default:
+        return 'metric'
+    }
+  }
+
+  
+
 }
 
 export interface CurrentWeather {
   description?: string;
   location?: string;
   iconUrl?: string;
+  temp?: number;
 }
 
 //OpenWeatherMapRequest
 export interface WeatherQueryParams {
   locationName?:string;
+  units?: TemperatureScale;
 }
 
 export interface OpenWeatherMapLocationRequest {
   q?: string;
+  units?: 'imperial' | 'metric';
 }
 
 export interface OpenWeatherMapCurrentWeatherResponse {
@@ -147,6 +168,11 @@ export interface OpenWeatherMapCurrentWeatherResponse {
   name: string;
   cod: number;
 }
+
+export class WeatherSettings {
+  scale: TemperatureScale = TemperatureScale.CELCIUS;
+}
+
 
 export class WeatherApiConfig {
   key = '2b8db39adb44b11721c508294db0b312';
