@@ -26,6 +26,7 @@ import { WeatherWidgetComponent } from './components/weather-widget/weather-widg
 import { WeatherApiService, WeatherApiConfig } from './services/weather-api.service';
 import { WeatherCurrentDescriptionComponent } from './components/weather-current-description/weather-current-description.component';
 import { WeatherLocationComponent } from './components/weather-location/weather-location.component';
+import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { WeatherLocationComponent } from './components/weather-location/weather-
     NavigationComponent,
     WeatherWidgetComponent,
     WeatherCurrentDescriptionComponent,
-    WeatherLocationComponent
+    WeatherLocationComponent,
+    WeatherIconComponent
   ],
   imports: [
     BrowserModule,
