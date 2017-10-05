@@ -19,6 +19,8 @@ export class WeatherCurrentTemperatureComponent {
   @Input()
   set deg(value: TemperatureScale) {
     this._deg = value;
+    console.log("in deg() function: ", value)
+
     switch (value) {
       case TemperatureScale.CELSIUS:
         this.unitSymbol = 'C';

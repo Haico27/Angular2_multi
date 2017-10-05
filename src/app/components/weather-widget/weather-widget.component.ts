@@ -25,6 +25,7 @@ export class WeatherWidgetComponent implements OnInit {
 
 
 
+
   constructor(
     private weatherapiService: WeatherApiService,
    ) { }
@@ -46,4 +47,8 @@ export class WeatherWidgetComponent implements OnInit {
 
      return this.weatherapiService.currentWeather(params);
    }
+}
+
+export class WeatherSettings {
+  scale: TemperatureScale = TemperatureScale.CELSIUS;
 }
