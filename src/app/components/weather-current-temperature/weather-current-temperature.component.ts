@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'weather-current-temperature',
   templateUrl: './weather-current-temperature.component.html',
@@ -9,14 +10,17 @@ export class WeatherCurrentTemperatureComponent {
   unitSymbol: string;
   @Input() temp: number;
   get deg(): TemperatureScale {
+    console.log("get deg() function in weather current component: ", this._deg)
     return this._deg;
   }
+
+
 
   @Input()
   set deg(value: TemperatureScale) {
     this._deg = value;
     switch (value) {
-      case TemperatureScale.CELCIUS:
+      case TemperatureScale.CELSIUS:
         this.unitSymbol = 'C';
         break;
       case TemperatureScale.FAHRENHEIT:
@@ -30,12 +34,14 @@ export class WeatherCurrentTemperatureComponent {
     }
   }
 
-  private _deg: TemperatureScale = TemperatureScale.CELCIUS
+  private _deg: TemperatureScale = TemperatureScale.CELSIUS;
+
+
 
 }
 
 export enum TemperatureScale {
-  CELCIUS = <any>'celcius',
+  CELSIUS = <any>'celsius',
   KELVIN = <any>'kelvin',
   FAHRENHEIT = <any>'fahrenheit'
 }

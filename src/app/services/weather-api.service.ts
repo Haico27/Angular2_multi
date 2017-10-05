@@ -78,7 +78,7 @@ export class WeatherApiService {
   ): OpenWeatherMapLocationRequest {
     const mapped: OpenWeatherMapLocationRequest = {
       q: params.locationName,
-      units: params.units ? this.mapUnits(params.units) : undefined,
+      units: params.units ? this.mapUnits(params.units) : undefined 
     }
     console.log("mapped in mapQueryParams function: ", mapped)
     return mapped;
@@ -107,20 +107,17 @@ export class WeatherApiService {
   }
 
   private mapUnits(unit: TemperatureScale) {
-    switch (unit) {
-      case TemperatureScale.CELCIUS:
+    switch(unit) {
+      case TemperatureScale.CELSIUS:
         return 'metric';
       case TemperatureScale.FAHRENHEIT:
         return 'imperial';
       case TemperatureScale.KELVIN:
         return;
       default:
-        return 'metric'
+        return 'metric';
     }
   }
-
-  
-
 }
 
 export interface CurrentWeather {
@@ -138,7 +135,7 @@ export interface WeatherQueryParams {
 
 export interface OpenWeatherMapLocationRequest {
   q?: string;
-  units?: 'imperial' | 'metric';
+  units?: 'imperial' | 'metric' ;
 }
 
 export interface OpenWeatherMapCurrentWeatherResponse {
@@ -168,11 +165,6 @@ export interface OpenWeatherMapCurrentWeatherResponse {
   name: string;
   cod: number;
 }
-
-export class WeatherSettings {
-  scale: TemperatureScale = TemperatureScale.CELCIUS;
-}
-
 
 export class WeatherApiConfig {
   key = '2b8db39adb44b11721c508294db0b312';

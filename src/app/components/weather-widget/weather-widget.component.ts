@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { WeatherApiService, CurrentWeather, WeatherQueryParams, WeatherSettings } from '../../services/weather-api.service';
+import { WeatherApiService, CurrentWeather, WeatherQueryParams } from '../../services/weather-api.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+
+import { TemperatureScale } from '../weather-current-temperature/weather-current-temperature.component';
 
 
 import 'rxjs/add/operator/map';
@@ -19,19 +21,8 @@ export class WeatherWidgetComponent implements OnInit {
 
   @Input() currentWeather: CurrentWeather | null;
   @Input('destination') locationName: string;
-  @Input()
-  set settings(value: WeatherSettings) {
-    if (!value) {
-      return;
-    }
-    this._settings = value;
-  }
+  @Input() units: TemperatureScale;
 
-  get settings(): WeatherSettings {
-    return this._settings;
-  }
-
-  private _settings: WeatherSettings;
 
 
   constructor(
@@ -49,14 +40,10 @@ export class WeatherWidgetComponent implements OnInit {
 
    //calls the currentWeather function in the weatherapiService with the location of the destination as params
    currentWeatherCall(): Observable<CurrentWeather> {
-     const params: WeatherQueryParams = Object.assign({}, { locationName: this.locationName });
-     console.log("in currentWeatherCall in weather-widget, locationName: ", this.locationName);
+     const params: WeatherQueryParams = Object.assign({}, { locationName: this.locationName }, { units: TemperatureScale.CELSIUS} );
+     console.log("in currentWeatherCall in weather-widget, locationName: ", this.locationName, TemperatureScale.CELSIUS);
      console.log("currentWeatherCall function in weather-widget: ", params);
+
      return this.weatherapiService.currentWeather(params);
    }
-
-
-
-
-
 }
