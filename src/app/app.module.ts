@@ -27,6 +27,7 @@ import { WeatherCurrentDescriptionComponent } from './components/weather-current
 import { WeatherLocationComponent } from './components/weather-location/weather-location.component';
 import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
 import { WeatherCurrentTemperatureComponent } from './components/weather-current-temperature/weather-current-temperature.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { WeatherCurrentTemperatureComponent } from './components/weather-current
     WeatherCurrentDescriptionComponent,
     WeatherLocationComponent,
     WeatherIconComponent,
-    WeatherCurrentTemperatureComponent
+    WeatherCurrentTemperatureComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
