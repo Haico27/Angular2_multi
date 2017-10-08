@@ -14,7 +14,6 @@ import { UserService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { DestinationDetailComponent } from './components/destination-detail/destination-detail.component';
 import { AuthenticationService } from './services/authentication.service';
-import { PoolingService } from './services/pooling.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { DestinationFormComponent } from './components/destination-form/destination-form.component';
@@ -60,7 +59,6 @@ import { WeatherCurrentTemperatureComponent } from './components/weather-current
               AlertService,
               AuthenticationService,
               WeatherApiService,
-              PoolingService,
               {
                 provide: 'WEATHER_CONFIG',
                 useClass: WeatherApiConfig

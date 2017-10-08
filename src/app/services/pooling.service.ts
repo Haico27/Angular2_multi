@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class PoolingService {
-  
+
   constructor(private zone: NgZone) {}
 
   // NOTE: Running the interval outside Angular ensures that e2e tests will not hang.

@@ -1,7 +1,6 @@
 import { Injectable, Inject, Input, forwardRef } from '@angular/core';
 import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { PoolingService } from './pooling.service';
 import { TemperatureScale } from '../components/weather-current-temperature/weather-current-temperature.component';
 
 import 'rxjs/add/operator/toPromise';
@@ -12,12 +11,10 @@ import 'rxjs/add/operator/filter';
 @Injectable()
 
 export class WeatherApiService {
-  poolingInterval = 60000 * 60;
 
 
   constructor(
     private http: Http,
-    private poolingService: PoolingService,
     @Inject('WEATHER_CONFIG') public apiConfig: WeatherApiConfig
   ) { }
 
@@ -32,6 +29,7 @@ export class WeatherApiService {
     queryParams: WeatherQueryParams,
     endpoint: string
   ): Observable<any> {
+
     const params = this.mapQueryParams(queryParams)
     console.log("params in callApi function in weather-api: ", params)
     console.log("endpoint in callApi function in weather-api: ", endpoint)
@@ -42,11 +40,8 @@ export class WeatherApiService {
                   .map(response =>  response.json())
                   .filter(el => !!el)
     console.log("get-request in callApi function: ", apiCall)
-    return this.wrapWithPoll(apiCall);
-  }
 
-  private wrapWithPoll(apiCall: Observable<any>) {
-    return this.poolingService.execute(() => apiCall, this.poolingInterval);
+    return apiCall;
   }
 
   private getRequestOptions(queryParams: object) {
@@ -78,7 +73,7 @@ export class WeatherApiService {
   ): OpenWeatherMapLocationRequest {
     const mapped: OpenWeatherMapLocationRequest = {
       q: params.locationName,
-      units: params.units ? this.mapUnits(params.units) : undefined 
+      units: params.units ? this.mapUnits(params.units) : undefined
     }
     console.log("mapped in mapQueryParams function: ", mapped)
     return mapped;
