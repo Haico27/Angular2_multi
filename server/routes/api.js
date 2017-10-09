@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+
+router.get('/chat', function(req, res){
+  res.send('<h1>Hello World</h1>');
+})
+
+
 // Get database connection
 const mysql = require('mysql');
 function getConnection() {
