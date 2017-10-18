@@ -1,4 +1,11 @@
-<ul id="messages"></ul>
-<form action="">
-  <input id="m" autocomplete="off" /><button>Send</button>
+
+
+
+<div *ngFor="let message of messages">
+  {{ message.sender }}: {{ message.text }}
+</div>
+
+
+<form>
+  <input [(ngModel)]="message.text" name="text" autocomplete="off" /><button id="chatbutton" (click)="sendMessage()">Send</button>
 </form>

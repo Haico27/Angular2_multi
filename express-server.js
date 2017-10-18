@@ -9,6 +9,28 @@ const api = require('./server/routes/api');
 
 const app = express();
 
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+
+//Set up socket.io
+const io = require('socket.io')(server);
+
+//a socket fires a 'connection'-event
+io.on('connection', function(socket){
+
+  //listen for chat messages
+  socket.on('chat message', function(message){
+    console.log('message from server:', message)
+    io.emit('chat message', message)
+  })
+
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -31,10 +53,7 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || '3000';
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
+
 
 /**
  * Listen on provided port, on all network interfaces.
