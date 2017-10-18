@@ -1,11 +1,16 @@
 
 
+<div *ngIf="currentUser">
+  <div *ngFor="let message of messages">
+    {{ message.sender }}: {{ message.text }}
+  </div>
 
-<div *ngFor="let message of messages">
-  {{ message.sender }}: {{ message.text }}
+
+  <form>
+    <input [(ngModel)]="message.text" name="text" autocomplete="off" /><button id="chatbutton" (click)="sendMessage()">Send</button>
+  </form>
 </div>
 
-
-<form>
-  <input [(ngModel)]="message.text" name="text" autocomplete="off" /><button id="chatbutton" (click)="sendMessage()">Send</button>
-</form>
+<div *ngIf="!currentUser">
+  <p>You need to be logged in to use the chat</p>
+</div>
