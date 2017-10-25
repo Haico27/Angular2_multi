@@ -9,7 +9,6 @@ import 'rxjs/add/operator/toPromise';
 
 export class ChatService {
   public online: boolean = false;
-  public onlineUserName: string = null;
 
   private socket = io();
 
@@ -18,18 +17,14 @@ export class ChatService {
     //transmits user details to the server
     this.socket.emit('newUser', user)
 
-
     let observable = new Observable(observer => {
 
 
 
       //listens to users who connect to chat
       this.socket.on('hi', (onlineUser) => {
-        console.log(onlineUser.name + ' connected to chat')
-        this.online = true;
-        this.onlineUserName = onlineUser.name;
-        observer.next(onlineUser.name)
-        console.log("this.onlineUserName in chat.service in socket: ", this.onlineUserName)
+        console.log(onlineUser + ' connected to chat')
+        observer.next(onlineUser)
       })
 
       //gets the list with current online users from the server
@@ -43,11 +38,6 @@ export class ChatService {
     })
 
     return observable
-  }
-
-
-  disconnect(user){
-    this.socket.emit('dc', user)
   }
 
   sendMessage(message) {

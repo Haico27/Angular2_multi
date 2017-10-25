@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 
 
@@ -11,10 +11,12 @@ import { ChatService } from '../../services/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-newUser: boolean = false;
-newUserName: string = null;
+export class ChatComponent implements OnInit, OnDestroy {
+  currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+  newUser: boolean = false;
+  newUserName: string = null;
+  exitedUser: boolean = false;
+  exitedUserName: string = null;
 
 
   constructor(
@@ -35,18 +37,22 @@ newUserName: string = null;
 
   ngOnInit() {
       this.getMessage();
-      this.userJoinsChat();
+      this.connectToChat();
+  }
 
-
+  ngOnDestroy() {
   }
 
 
-  userJoinsChat() {
+
+  connectToChat() {
     this.chatService.joinChat(this.sender).subscribe((user: string) => {
       this.newUserName = user;
-      this.newUser = this.chatService.online;
+      this.newUser = true;
+      this.exitedUser = false;
     })
   }
+
 
   //sends the message object with sender and text through to the sendMessage function in the chatService
   sendMessage() {

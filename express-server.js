@@ -21,17 +21,41 @@ const io = require('socket.io')(server);
 let onlineUsers = [];
 
 
+
 //a socket fires a 'connection'-event
 io.on('connection', function(socket){
 
   //listen for users joining the chat
   socket.on('newUser', function(name){
-    const user = { id: socket.id, name: name };
+    const user = name;
     console.log('user who joined the chat: ', user)
-    onlineUsers.push(user)
+    console.log(user, ' connected to chat');
+
+
+    if ( onlineUsers.length === 0 ) {
+      console.log("in if statement: ", (onlineUsers.length === 0))
+      onlineUsers.push(user)
+    } else {
+      console.log("onlineUsers.name: ", onlineUsers.includes(user))
+      onlineUsers.includes(user) ? onlineUsers : onlineUsers.push(user)
+    //   for (let i = 0; i < onlineUsers.length; i++) {
+    //     console.log("user.name != onlineUsers[i].name: ", (user.name != onlineUsers[i].name))
+    //     if (user.name == onlineUsers[i].name) {
+    //       console.log("if statement executed")
+    //       break;
+    //     } else {
+    //       onlineUsers.push(user)
+    //     }
+    //   }
+    }
+
+
+    console.log("online users array in server after push: ", onlineUsers)
     io.emit('hi', user)
     io.emit('online users list', onlineUsers)
   })
+
+
 
   //listens for users disconnecting
   socket.on('dc', function(user){
@@ -46,9 +70,9 @@ io.on('connection', function(socket){
     io.emit('chat message', message)
   })
 
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+
+  socket.on('disconnect', function(name){
+    console.log("user left the chat")
   });
 });
 
