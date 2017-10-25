@@ -17,8 +17,28 @@ const server = http.createServer(app);
 //Set up socket.io
 const io = require('socket.io')(server);
 
+//initialize array of users who joined the chat
+let onlineUsers = [];
+
+
 //a socket fires a 'connection'-event
 io.on('connection', function(socket){
+
+  //listen for users joining the chat
+  socket.on('join', function(name){
+    const user = { id: socket.id, name: name };
+    console.log('user who joined the chat: ', user)
+    onlineUsers.push(user)
+    io.emit('hi', name)
+    io.emit('online users list', onlineUsers)
+  })
+
+  //listens for users disconnecting
+  socket.on('dc', function(user){
+    socket.disconnect()
+  })
+
+
 
   //listen for chat messages
   socket.on('chat message', function(message){

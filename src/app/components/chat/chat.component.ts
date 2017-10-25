@@ -14,6 +14,7 @@ import { ChatService } from '../../services/chat.service';
 export class ChatComponent implements OnInit {
 currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
 
+
   constructor(
     private chatService:ChatService,
   ) { }
@@ -33,6 +34,14 @@ currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
 
   ngOnInit() {
       this.getMessage();
+      this.userJoinsChat();
+  }
+
+
+  userJoinsChat() {
+    this.chatService.joinChat(this.sender).subscribe(user =>
+      console.log("user in userJoinsChat function in chatcomponent: ", user)
+    )
   }
 
   //sends the message object with sender and text through to the sendMessage function in the chatService
