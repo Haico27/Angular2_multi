@@ -13,12 +13,13 @@ import { ChatService } from '../../services/chat.service';
 })
 export class ChatComponent implements OnInit {
 currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+newUser: boolean = false;
+newUserName: string = null;
 
 
   constructor(
     private chatService:ChatService,
   ) { }
-
 
 
   // sets the sender if currentUser exists
@@ -35,13 +36,16 @@ currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
   ngOnInit() {
       this.getMessage();
       this.userJoinsChat();
+
+
   }
 
 
   userJoinsChat() {
-    this.chatService.joinChat(this.sender).subscribe(user =>
-      console.log("user in userJoinsChat function in chatcomponent: ", user)
-    )
+    this.chatService.joinChat(this.sender).subscribe((user: string) => {
+      this.newUserName = user;
+      this.newUser = this.chatService.online;
+    })
   }
 
   //sends the message object with sender and text through to the sendMessage function in the chatService
@@ -51,6 +55,7 @@ currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
     this.chatService.sendMessage(this.message);
     this.message.text = '';
     console.log("messages array in chat.component: ", this.messages)
+    console.log("in chat.component, this.chatService.online: ", this.chatService.online)
 
   }
 

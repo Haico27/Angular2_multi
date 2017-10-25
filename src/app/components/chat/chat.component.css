@@ -1,6 +1,4 @@
-.main {
-  height: 100vh;
-}
+
 
 #chat-window {
   position: relative;
@@ -29,6 +27,7 @@
 #messages-window {
   border: 1px solid blue;
   height: 85%;
+  overflow: scroll;
 }
 
 #chat-users {

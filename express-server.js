@@ -25,11 +25,11 @@ let onlineUsers = [];
 io.on('connection', function(socket){
 
   //listen for users joining the chat
-  socket.on('join', function(name){
+  socket.on('newUser', function(name){
     const user = { id: socket.id, name: name };
     console.log('user who joined the chat: ', user)
     onlineUsers.push(user)
-    io.emit('hi', name)
+    io.emit('hi', user)
     io.emit('online users list', onlineUsers)
   })
 
