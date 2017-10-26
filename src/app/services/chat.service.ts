@@ -9,13 +9,14 @@ import 'rxjs/add/operator/toPromise';
 
 export class ChatService {
   public online: boolean = false;
+  public usersList: number[];
 
   private socket = io();
 
   joinChat(user){
 
     //transmits user details to the server
-    this.socket.emit('newUser', user)
+    this.socket.emit('addUserToSocketList', user)
 
     let observable = new Observable(observer => {
 
@@ -28,13 +29,26 @@ export class ChatService {
       })
 
       //gets the list with current online users from the server
-      this.socket.on('online users list', function(onlineUsersList){
-        console.log("currently online users: ", onlineUsersList)
-      })
+      // this.socket.on('online users list', function(onlineUsersList){
+      //   console.log("currently online users: ", onlineUsersList)
+      // })
+
       return () => {
         this.socket.disconnect()
       };
 
+    })
+
+    return observable
+  }
+
+  updateUsersList() {
+    let observable = new Observable(observer => {
+      this.socket.on("updateSocketList", function(onlineUsersList){
+        this.usersList = onlineUsersList;
+        console.log("currently online users: ", this.usersList)
+        observer.next(onlineUsersList)
+      })
     })
 
     return observable

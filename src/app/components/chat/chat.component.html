@@ -26,6 +26,9 @@
         </div>
 
         <div id="users-list">
+          <ul class="display-list" *ngFor="let onlineUser of onlineUsers">
+            <li>{{ onlineUser }}</li>
+          </ul>
         </div>
       </div>
 

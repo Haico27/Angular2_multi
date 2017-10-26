@@ -24,9 +24,8 @@ let onlineUsers = [];
 
 //a socket fires a 'connection'-event
 io.on('connection', function(socket){
-
   //listen for users joining the chat
-  socket.on('newUser', function(name){
+  socket.on('addUserToSocketList', function(name){
     const user = name;
     console.log('user who joined the chat: ', user)
     console.log(user, ' connected to chat');
@@ -38,22 +37,15 @@ io.on('connection', function(socket){
     } else {
       console.log("onlineUsers.name: ", onlineUsers.includes(user))
       onlineUsers.includes(user) ? onlineUsers : onlineUsers.push(user)
-    //   for (let i = 0; i < onlineUsers.length; i++) {
-    //     console.log("user.name != onlineUsers[i].name: ", (user.name != onlineUsers[i].name))
-    //     if (user.name == onlineUsers[i].name) {
-    //       console.log("if statement executed")
-    //       break;
-    //     } else {
-    //       onlineUsers.push(user)
-    //     }
-    //   }
     }
 
 
     console.log("online users array in server after push: ", onlineUsers)
     io.emit('hi', user)
-    io.emit('online users list', onlineUsers)
+    io.emit('updateSocketList', onlineUsers)
   })
+
+  
 
 
 

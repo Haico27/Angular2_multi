@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   newUserName: string = null;
   exitedUser: boolean = false;
   exitedUserName: string = null;
+  onlineUsers: number[];
 
 
   constructor(
@@ -38,6 +39,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
       this.getMessage();
       this.connectToChat();
+      this.updateListOnlineUsers();
   }
 
   ngOnDestroy() {
@@ -50,6 +52,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.newUserName = user;
       this.newUser = true;
       this.exitedUser = false;
+    })
+  }
+
+  updateListOnlineUsers(){
+    this.chatService.updateUsersList().subscribe((data: number[]) => {
+      this.onlineUsers = data
+      console.log("data in updateListOnlineUsers function in chat.component: ", this.onlineUsers)
     })
   }
 
