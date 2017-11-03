@@ -38,29 +38,50 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
       this.getMessage();
-      this.connectToChat();
-      this.updateListOnlineUsers();
+      this.connectUser();
+      this.getConnectedUsersList();
   }
 
   ngOnDestroy() {
+    this.disconnectUser()
   }
 
+  connectUser(){
+    this.chatService.connectUser()
+  }
 
+  disconnectUser(){
+    this.chatService.disconnectUser()
+  }
 
-  connectToChat() {
-    this.chatService.joinChat(this.sender).subscribe((user: string) => {
-      this.newUserName = user;
-      this.newUser = true;
-      this.exitedUser = false;
+  getConnectedUsersList(){
+    this.chatService.getConnectedUsersList().subscribe((list: number[]) => {
+      this.onlineUsers = list;
     })
   }
 
-  updateListOnlineUsers(){
-    this.chatService.updateUsersList().subscribe((data: number[]) => {
-      this.onlineUsers = data
-      console.log("data in updateListOnlineUsers function in chat.component: ", this.onlineUsers)
-    })
-  }
+  // connectToChat(){
+  //   this.chatService.connectUser().subscribe((user: string) => {
+  //     this.newUser = true;
+  //     this.newUserName = user;
+  //     this.exitedUser = false;
+  //   })
+  // }
+  //
+  // disconnectFromChat(){
+  //   console.log("disconnecting user in chat.component")
+  //   this.chatService.disconnectUser(this.sender)
+  // }
+  //
+  // listenForDisconnectedUser() {
+  //   this.chatService.listenForDisconnectedUser().subscribe((user: string) => {
+  //     console.log("disconnected user in chat.component listenForDisconnectedUser-function: ", user)
+  //   })
+  // }
+
+
+
+
 
 
   //sends the message object with sender and text through to the sendMessage function in the chatService

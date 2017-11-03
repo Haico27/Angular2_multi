@@ -18,42 +18,16 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 //initialize array of users who joined the chat
-let onlineUsers = [];
+let connectedUsersList = [];
+let userName;
 
 
 
 //a socket fires a 'connection'-event
 io.on('connection', function(socket){
-  //listen for users joining the chat
-  socket.on('addUserToSocketList', function(name){
-    const user = name;
-    console.log('user who joined the chat: ', user)
-    console.log(user, ' connected to chat');
-
-
-    if ( onlineUsers.length === 0 ) {
-      console.log("in if statement: ", (onlineUsers.length === 0))
-      onlineUsers.push(user)
-    } else {
-      console.log("onlineUsers.name: ", onlineUsers.includes(user))
-      onlineUsers.includes(user) ? onlineUsers : onlineUsers.push(user)
-    }
-
-
-    console.log("online users array in server after push: ", onlineUsers)
-    io.emit('hi', user)
-    io.emit('updateSocketList', onlineUsers)
-  })
-
-  
-
-
-
-  //listens for users disconnecting
-  socket.on('dc', function(user){
-    socket.disconnect()
-  })
-
+  //initialize the list of connectedSockets when a socket connects
+  connectedUsersList.push(socket.id)
+  io.emit("updateSocketList", connectedUsersList)
 
 
   //listen for chat messages
@@ -62,10 +36,25 @@ io.on('connection', function(socket){
     io.emit('chat message', message)
   })
 
+  socket.on('addUserToSocketList', function(user) {
+    connectedUsersList.includes(socket.id) ? connectedUsersList : connectedUsersList.push(socket.id)
+    io.emit("updateSocketList", connectedUsersList)
+  })
 
-  socket.on('disconnect', function(name){
-    console.log("user left the chat")
-  });
+  socket.on('removeUserFromSocketList', () => {
+    socket.disconnect()
+  })
+
+
+  socket.on('disconnect', function(){
+    console.log("user disconnected")
+    let socketId = socket.id;
+    let socketIndex = connectedUsersList.indexOf(socketId)
+    if (socketIndex != -1) {
+      connectedUsersList.splice(socketIndex, 1)
+      io.emit("updateSocketList", connectedUsersList)
+    }
+  })
 });
 
 // Parsers for POST data

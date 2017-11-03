@@ -10,49 +10,100 @@ import 'rxjs/add/operator/toPromise';
 export class ChatService {
   public online: boolean = false;
   public usersList: number[];
+  public userName: string;
 
   private socket = io();
 
-  joinChat(user){
 
-    //transmits user details to the server
-    this.socket.emit('addUserToSocketList', user)
 
+
+  constructor() { }
+
+  connectUser() {
+    this.socket.emit('addUserToSocketList')
+    this.socket.connect()
+  }
+
+
+  disconnectUser() {
+    this.socket.emit('removeUserFromSocketList')
+  }
+
+  //get the current list of sockets from the server
+  getConnectedUsersList() {
     let observable = new Observable(observer => {
-
-
-
-      //listens to users who connect to chat
-      this.socket.on('hi', (onlineUser) => {
-        console.log(onlineUser + ' connected to chat')
-        observer.next(onlineUser)
+      this.socket.on('updateSocketList', (list) => {
+        observer.next(list)
       })
-
-      //gets the list with current online users from the server
-      // this.socket.on('online users list', function(onlineUsersList){
-      //   console.log("currently online users: ", onlineUsersList)
-      // })
-
       return () => {
         this.socket.disconnect()
-      };
-
+      }
     })
-
     return observable
   }
 
-  updateUsersList() {
-    let observable = new Observable(observer => {
-      this.socket.on("updateSocketList", function(onlineUsersList){
-        this.usersList = onlineUsersList;
-        console.log("currently online users: ", this.usersList)
-        observer.next(onlineUsersList)
-      })
-    })
 
-    return observable
-  }
+
+
+
+
+
+
+
+
+
+
+  // joinChat(user){
+  //
+  //   //transmits user details to the server
+  //   this.socket.emit('addUserToSocketList', user)
+  //
+  //   let observable = new Observable(observer => {
+  //
+  //     //listens to users who connect to chat
+  //     this.socket.on('hi', (connectUser) => {
+  //       console.log(connectUser.name + ' connected to chat')
+  //       this.userName = connectUser.name
+  //
+  //       observer.next(connectUser.name)
+  //     })
+  //     return () => {
+  //       this.socket.disconnect()
+  //     };
+  //
+  //   })
+  //
+  //   return observable
+  // }
+  //
+  // leaveChat() {
+  //   let observable = new Observable(observer => {
+  //     this.socket.on("removeUserFromSocketList", (disconnectUser) => {
+  //       console.log("disconnect user in chat.service", disconnectUser)
+  //       this.userName = disconnectUser
+  //       observer.next(disconnectUser)
+  //     })
+  //     return () => {
+  //       this.socket.disconnect()
+  //     }
+  //   })
+  //   return observable
+  // }
+  //
+  // updateUsersList() {
+  //   let observable = new Observable(observer => {
+  //     this.socket.on("updateSocketList", function(onlineUsersList){
+  //       this.usersList = onlineUsersList;
+  //       console.log("currently online users: ", this.usersList)
+  //       observer.next(onlineUsersList)
+  //     })
+  //     return () => {
+  //       this.socket.disconnect()
+  //     }
+  //   })
+  //
+  //   return observable
+  // }
 
   sendMessage(message) {
     this.socket.emit('chat message', message)
