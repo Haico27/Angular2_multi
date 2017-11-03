@@ -10,17 +10,24 @@ import 'rxjs/add/operator/toPromise';
 export class ChatService {
   public online: boolean = false;
   public usersList: number[];
-  public userName: string;
+  public userName: string = null;
 
-  private socket = io();
-
-
+  private socket;
 
 
   constructor() { }
 
-  connectUser() {
-    this.socket.emit('addUserToSocketList')
+  connectToSocket(user){
+    this.userName = user;
+    if (typeof io != "undefined") {
+      this.socket = io({ query: "userName= " + this.userName })
+    }
+
+    this.socket.connect()
+  }
+
+  connectUser(user) {
+    this.socket.emit('addUserToSocketList', user)
     this.socket.connect()
   }
 
@@ -28,6 +35,7 @@ export class ChatService {
   disconnectUser() {
     this.socket.emit('removeUserFromSocketList')
   }
+
 
   //get the current list of sockets from the server
   getConnectedUsersList() {

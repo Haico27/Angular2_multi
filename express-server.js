@@ -19,15 +19,25 @@ const io = require('socket.io')(server);
 
 //initialize array of users who joined the chat
 let connectedUsersList = [];
-let userName;
+
 
 
 
 //a socket fires a 'connection'-event
 io.on('connection', function(socket){
-  //initialize the list of connectedSockets when a socket connects
-  connectedUsersList.push(socket.id)
+  if (typeof socket.handshake.query.userName != "undefined") {
+    console.log("socket.handshake.query.userName in server: ", socket.handshake.query.userName)
+  }
+  //initialize the connectedUsersList when a socket connects
+  connectedUsersList.push(socket.handshake.query.userName)
   io.emit("updateSocketList", connectedUsersList)
+
+
+  socket.on('addUserToSocketList', function(name) {
+    connectedUsersList.includes(socket.handshake.query.userName) ? connectedUsersList : connectedUsersList.push(socket.handshake.query.userName)
+    io.emit("updateSocketList", connectedUsersList)
+  })
+
 
 
   //listen for chat messages
@@ -36,10 +46,7 @@ io.on('connection', function(socket){
     io.emit('chat message', message)
   })
 
-  socket.on('addUserToSocketList', function(user) {
-    connectedUsersList.includes(socket.id) ? connectedUsersList : connectedUsersList.push(socket.id)
-    io.emit("updateSocketList", connectedUsersList)
-  })
+
 
   socket.on('removeUserFromSocketList', () => {
     socket.disconnect()
@@ -48,10 +55,10 @@ io.on('connection', function(socket){
 
   socket.on('disconnect', function(){
     console.log("user disconnected")
-    let socketId = socket.id;
-    let socketIndex = connectedUsersList.indexOf(socketId)
-    if (socketIndex != -1) {
-      connectedUsersList.splice(socketIndex, 1)
+    let name = socket.handshake.query.userName;
+    let index = connectedUsersList.indexOf(name)
+    if (index != -1) {
+      connectedUsersList.splice(index, 1)
       io.emit("updateSocketList", connectedUsersList)
     }
   })

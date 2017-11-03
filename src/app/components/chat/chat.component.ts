@@ -20,9 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   onlineUsers: number[];
 
 
-  constructor(
-    private chatService:ChatService,
-  ) { }
+
 
 
   // sets the sender if currentUser exists
@@ -32,6 +30,12 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   //creates an empty array to store the messages for showing them on the screen
   messages = [];
+
+  constructor(
+    private chatService:ChatService,
+  ) {
+    this.connectToSocket()
+   }
 
 
 
@@ -46,8 +50,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.disconnectUser()
   }
 
+  connectToSocket(){
+    this.chatService.connectToSocket(this.sender)
+  }
+
   connectUser(){
-    this.chatService.connectUser()
+    this.chatService.connectUser(this.sender)
   }
 
   disconnectUser(){
