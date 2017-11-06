@@ -43,9 +43,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
       this.getMessage();
-      //this.connectUser();
       this.getConnectedUsersList();
       this.displayDisconnectedUser();
+      this.displayConnectedUser();
 
   }
 
@@ -57,9 +57,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatService.connectToSocket(this.sender)
   }
 
-  // connectUser(){
-  //   this.chatService.connectUser(this.sender)
-  // }
+  displayConnectedUser(){
+    this.chatService.getConnectedUser().subscribe((user: string) => {
+      this.newUser = true;
+      this.exitedUser = false;
+      this.newUserName = user;
+    })
+  }
 
   disconnectUser(){
     this.chatService.disconnectUser()

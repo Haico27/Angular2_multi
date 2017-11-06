@@ -26,11 +26,18 @@ export class ChatService {
     this.socket.connect()
   }
 
-  connectUser(user) {
-    this.socket.emit('addUserToSocketList', user)
-    this.socket.connect()
-  }
 
+  getConnectedUser() {
+    let observable = new Observable(observer => {
+      this.socket.on('addUserToSocketList', (user) => {
+        observer.next(user)
+      })
+      return () => {
+        this.socket.disconnect()
+      }
+    })
+    return observable
+  }
 
 
 
