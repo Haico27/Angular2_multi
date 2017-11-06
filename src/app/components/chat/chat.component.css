@@ -9,14 +9,11 @@
 #chat-input {
   bottom: 0;
   position: absolute;
-  border: 1px solid darkgreen;
   width: 90%;
   text-align: center;
-  padding: .1em;
 }
 
 #chat-input input {
-  margin-right: 1em;
   width: 70%;
 }
 
@@ -25,7 +22,6 @@
 }
 
 #messages-window {
-  border: 1px solid blue;
   height: 85%;
   overflow: scroll;
 }
@@ -40,112 +36,6 @@
 }
 
 #users-list {
-  border: 1px dashed grey;
   height: 79%;
+  overflow: scroll;
 }
-
-/*.main {
-  border: 1px solid red;
-  height: 100vh;
-  width: 100vw;
-}
-
-.chat-window {
-  border: 1px solid yellow;
-  height: 100%;
-  width:  70%;
-}
-
-.messages-window {
-  border: 1px solid black;
-  height: 100%;
-}
-
-.chat-input {
-  bottom: 0;
-  position: fixed;
-  border: 1px dotted green;
-  width: 70%;
-  padding: .1em;
-  background-color: red;
-}
-
-.chat-input input {
-  width: 80%;
-}
-
-.chat-input button {
-  width: 15%;
-}*/
-
-
-
-/** {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-form {
-  background: #000;
-  padding: 3px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-form input {
-  border: 0;
-  padding: 10px;
-  width: 90%;
-  margin-right: .5%;
-}
-
-form button {
-  width: 9%;
-  background: rgb(130, 224, 255);
-  border: none;
-  padding: 10px;
-}
-
-#messages {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-#messages li {
-  padding: 5px 10px;
-}
-
-#messages li:nth-child(odd) {
-  background: #eee;
-}
-
-.userInformation {
-  width: 30%;
-  height: 100%;
-  position: relative;
-  border: 1px solid black;
-}
-
-#chatWindow {
-  width: 70%;
-  height: 100%;
-  position: relative;
-  border: 1px solid red;
-}
-
-.main {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  border: 1px solid blue;
-}*/
-
-/*.contain{
-  display:block;
-  box-shadow:0 2px 5px rgba(0,0,0,0.4);
-  height: 100%;
-}*/

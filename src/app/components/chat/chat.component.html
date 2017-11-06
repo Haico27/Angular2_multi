@@ -4,14 +4,14 @@
   <div class="container border main">
     <div class="row">
 
-      <div class="col-8 border border-danger" id="chat-window" >
-        <div id="messages-window">
-          <div class="display-message" *ngFor="let message of messages">
+      <div class="col-8 border border-danger rounded" id="chat-window" >
+        <div id="messages-window" class="bg-light rounded">
+          <div class="display-message border border-success rounded bg-white m-1 p-0" *ngFor="let message of messages">
             {{ message.sender }}: {{ message.text }}
           </div>
         </div>
-        <form id="chat-input">
-          <input [(ngModel)]="message.text" name="text" autocomplete="off" placeholder="Type message here"/><button class="btn btn-primary" id="chatbutton" (click)="sendMessage()">Send</button>
+        <form id="chat-input" class="bg-secondary">
+          <input [(ngModel)]="message.text" name="text" autocomplete="off" placeholder="Type your message..." class="mr-1"/><button class="btn btn-primary" id="chatbutton" (click)="sendMessage()">Send</button>
         </form>
       </div>
 
@@ -25,9 +25,12 @@
           </div>
         </div>
 
-        <div id="users-list">
-          <ul class="display-list" *ngFor="let onlineUser of onlineUsers">
-            <li>{{ onlineUser }}</li>
+        <div id="users-list" class="border border-dark rounded p-1">
+          <div class="bg-success text-center">
+            <h4 class="text-white">Online users</h4>
+          </div>
+          <ul class="display-list list-group" *ngFor="let onlineUser of onlineUsers">
+            <li class="list-group-item">{{ onlineUser }}</li>
           </ul>
         </div>
       </div>

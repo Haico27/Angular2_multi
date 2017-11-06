@@ -22,7 +22,7 @@ export class ChatService {
     if (typeof io != "undefined") {
       this.socket = io({ query: "userName= " + this.userName })
     }
-
+    
     this.socket.connect()
   }
 
