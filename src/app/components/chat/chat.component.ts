@@ -85,30 +85,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     })
   }
 
-  // connectToChat(){
-  //   this.chatService.connectUser().subscribe((user: string) => {
-  //     this.newUser = true;
-  //     this.newUserName = user;
-  //     this.exitedUser = false;
-  //   })
-  // }
-  //
-  // disconnectFromChat(){
-  //   console.log("disconnecting user in chat.component")
-  //   this.chatService.disconnectUser(this.sender)
-  // }
-  //
-  // listenForDisconnectedUser() {
-  //   this.chatService.listenForDisconnectedUser().subscribe((user: string) => {
-  //     console.log("disconnected user in chat.component listenForDisconnectedUser-function: ", user)
-  //   })
-  // }
-
-
-
-
-
-
   //sends the message object with sender and text through to the sendMessage function in the chatService
   sendMessage() {
     console.log(this.message.text, this.message.sender)

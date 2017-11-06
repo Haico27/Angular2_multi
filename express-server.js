@@ -27,9 +27,14 @@ let connectedUsersList = [];
 io.on('connection', function(socket){
   if (typeof socket.handshake.query.userName != "undefined") {
     console.log("socket.handshake.query.userName in server: ", socket.handshake.query.userName)
+
     //initialize the connectedUsersList when a socket connects
     connectedUsersList.push(socket.handshake.query.userName)
+
+    //emits an updateSocketList-event to display the updated list of connected sockets
     io.emit("updateSocketList", connectedUsersList)
+
+    //emits an addUserToSocketList-event for displaying a message that a new user joined the chat
     io.emit("addUserToSocketList", socket.handshake.query.userName)
   }
 
@@ -39,11 +44,6 @@ io.on('connection', function(socket){
     io.emit('chat message', message)
   })
 
-
-
-  socket.on('removeUserFromSocketList', () => {
-    socket.disconnect()
-  })
 
 
   socket.on('disconnect', function(){

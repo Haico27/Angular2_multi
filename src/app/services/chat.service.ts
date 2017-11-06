@@ -17,6 +17,8 @@ export class ChatService {
 
   constructor() { }
 
+
+  //creates an instance of a socket with the userName as query. In this way, the userName is connected directly to the socket
   connectToSocket(user){
     this.userName = user;
     if (typeof io != "undefined") {
@@ -26,7 +28,7 @@ export class ChatService {
     this.socket.connect()
   }
 
-
+  //listens to the addUserToSocket-event and puts the returned user in an observable, so the data can be used by the component
   getConnectedUser() {
     let observable = new Observable(observer => {
       this.socket.on('addUserToSocketList', (user) => {
@@ -42,12 +44,13 @@ export class ChatService {
 
 
 
-
+  //fires the disconnect-event to the socket on the server
   disconnectUser() {
     this.socket.disconnect()
 
   }
 
+  //gets disconnected user from the server for displaying message that user has left the chat
   getDisconnectedUser(){
     let observable = new Observable(observer => {
       this.socket.on('removeUserFromSocketList', (user) => {
@@ -74,69 +77,6 @@ export class ChatService {
     return observable
   }
 
-
-
-
-
-
-
-
-
-
-
-
-  // joinChat(user){
-  //
-  //   //transmits user details to the server
-  //   this.socket.emit('addUserToSocketList', user)
-  //
-  //   let observable = new Observable(observer => {
-  //
-  //     //listens to users who connect to chat
-  //     this.socket.on('hi', (connectUser) => {
-  //       console.log(connectUser.name + ' connected to chat')
-  //       this.userName = connectUser.name
-  //
-  //       observer.next(connectUser.name)
-  //     })
-  //     return () => {
-  //       this.socket.disconnect()
-  //     };
-  //
-  //   })
-  //
-  //   return observable
-  // }
-  //
-  // leaveChat() {
-  //   let observable = new Observable(observer => {
-  //     this.socket.on("removeUserFromSocketList", (disconnectUser) => {
-  //       console.log("disconnect user in chat.service", disconnectUser)
-  //       this.userName = disconnectUser
-  //       observer.next(disconnectUser)
-  //     })
-  //     return () => {
-  //       this.socket.disconnect()
-  //     }
-  //   })
-  //   return observable
-  // }
-  //
-  // updateUsersList() {
-  //   let observable = new Observable(observer => {
-  //     this.socket.on("updateSocketList", function(onlineUsersList){
-  //       this.usersList = onlineUsersList;
-  //       console.log("currently online users: ", this.usersList)
-  //       observer.next(onlineUsersList)
-  //     })
-  //     return () => {
-  //       this.socket.disconnect()
-  //     }
-  //   })
-  //
-  //   return observable
-  // }
-
   sendMessage(message) {
     this.socket.emit('chat message', message)
     console.log("message in chatService: ", message)
@@ -153,8 +93,4 @@ export class ChatService {
 
     return observable;
   }
-
-
-
-
 }
