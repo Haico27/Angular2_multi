@@ -22,7 +22,7 @@ export class ChatService {
     if (typeof io != "undefined") {
       this.socket = io({ query: "userName= " + this.userName })
     }
-    
+
     this.socket.connect()
   }
 
@@ -32,8 +32,25 @@ export class ChatService {
   }
 
 
+
+
+
+
   disconnectUser() {
-    this.socket.emit('removeUserFromSocketList')
+    this.socket.disconnect()
+
+  }
+
+  getDisconnectedUser(){
+    let observable = new Observable(observer => {
+      this.socket.on('removeUserFromSocketList', (user) => {
+        observer.next(user)
+      })
+      return () => {
+        this.socket.disconnect()
+      }
+    })
+    return observable
   }
 
 

@@ -54,12 +54,13 @@ io.on('connection', function(socket){
 
 
   socket.on('disconnect', function(){
-    console.log("user disconnected")
+    console.log("user disconnected: ", socket.handshake.query.userName)
     let name = socket.handshake.query.userName;
     let index = connectedUsersList.indexOf(name)
     if (index != -1) {
       connectedUsersList.splice(index, 1)
       io.emit("updateSocketList", connectedUsersList)
+      io.emit("removeUserFromSocketList", name)
     }
   })
 });
