@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 import { Destination } from '../models/destination';
 
@@ -15,11 +17,9 @@ export class DestinationService {
 
   constructor( private http: Http) { }
 
-  getDestinations(): Promise<Destination[]> {
+  getDestinations(): Observable<Destination[]> {
     return this.http.get(this.destinationsUrl)
-                .toPromise()
-                .then((response: Response) => response.json() as Destination[])
-                .catch(this.handleError);
+    .map((response: Response) => response.json())
   }
 
   private handleError(error: any):

@@ -18,11 +18,11 @@ export class DestinationsComponent implements OnInit  {
   //constructor that injects destinationService into the destinationService-property
   constructor( private destinationService: DestinationService) { }
 
-  getDestinations(): void {
-    this.destinationService.getDestinations().then(destinations => this.destinations = destinations);
+  getDestinations() {
+    this.destinationService.getDestinations().subscribe(destinations => this.destinations = destinations);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getDestinations();
   }
 
