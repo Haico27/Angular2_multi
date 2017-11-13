@@ -13,8 +13,16 @@
     <a routerLink="/register"
         routerLinkActive="active">Register</a>
   </div>
-  <div *ngIf="currentUser" class="justify-content-end">
-    <span class="text-light">Welcome {{currentUser.firstName}}!</span>
-    <a (click)="logout()">Log out</a>
+  <div *ngIf="currentUser" class="justify-content-end dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Welcome {{currentUser.firstName}}!
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" (click)="logout()">Log out</a>
+    </div>
+
+
+    <!-- <span class="text-light">Welcome {{currentUser.firstName}}!</span>
+    <a (click)="logout()">Log out</a> -->
   </div>
 </nav>

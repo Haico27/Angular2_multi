@@ -36,6 +36,7 @@ export class AuthenticationService {
   }
 
   logout() {
+    console.log("user logging out: ", JSON.parse(localStorage.getItem('currentUser')) )
     localStorage.removeItem('currentUser');
     this.getCurrentUser.emit(JSON.parse(localStorage.getItem('currentUser')))
   }
