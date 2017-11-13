@@ -1,46 +1,50 @@
-<div class="container">
-  <h1>Enter destination</h1>
-  <form (ngSubmit)="onSubmit()" #destinationForm="ngForm">
-    <div class="form-group">
-      <label for="name">Name: </label>
-      <input type="text" class="form-control" id="name"
+
+  <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseDestinationFormButton" aria-controls="collapseDestinationForm" aria-expanded="false">
+    Add destination
+  </button>
+  <div class="container collapse" id="collapseDestinationFormButton">
+    <h1>Enter destination</h1>
+    <form (ngSubmit)="onSubmit()" #destinationForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input type="text" class="form-control" id="name"
+                required
+                placeholder="E.g. name of city, lake, area, forest, province"
+                [(ngModel)]="model.name" name="name"
+                #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+              class="alert alert-danger">
+              Name of destination is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country: </label>
+        <input type="text" class="form-control" id="country"
+                required
+                placeholder="Country of your destination"
+                [(ngModel)]="model.country" name="country"
+                #country="ngModel">
+        <div [hidden]="country.valid || country.pristine"
+              class="alert alert-danger">
+              Country of destination is required
+        </div>
+      </div>
+
+      <div>
+        <label for="imageUrl">Upload image: </label>
+        <input type="text" class="form-control" id="imageUrl"
               required
-              placeholder="E.g. name of city, lake, area, forest, province"
-              [(ngModel)]="model.name" name="name"
-              #name="ngModel">
-      <div [hidden]="name.valid || name.pristine"
-            class="alert alert-danger">
-            Name of destination is required
+              placeholder="Enter URL of image"
+              [(ngModel)]="model.imageUrl" name="imageUrl"
+              #imageUrl="ngModel"/>
+        <div [hidden]="imageUrl.valid || imageUrl.pristine"
+              class="alert alert-danger">
+              URL of image is required
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="country">Country: </label>
-      <input type="text" class="form-control" id="country"
-              required
-              placeholder="Country of your destination"
-              [(ngModel)]="model.country" name="country"
-              #country="ngModel">
-      <div [hidden]="country.valid || country.pristine"
-            class="alert alert-danger">
-            Country of destination is required
-      </div>
-    </div>
+      <button type="submit" class="btn btn-success" [disabled]="!destinationForm.form.valid">Add destination</button>
 
-    <div>
-      <label for="imageUrl">Upload image: </label>
-      <input type="text" class="form-control" id="imageUrl"
-            required
-            placeholder="Enter URL of image"
-            [(ngModel)]="model.imageUrl" name="imageUrl"
-            #imageUrl="ngModel"/>
-      <div [hidden]="imageUrl.valid || imageUrl.pristine"
-            class="alert alert-danger">
-            URL of image is required
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-success" [disabled]="!destinationForm.form.valid">Add destination</button>
-
-  </form>
-</div>
+    </form>
+  </div>
