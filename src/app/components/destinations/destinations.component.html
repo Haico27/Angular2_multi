@@ -2,16 +2,18 @@
 
 <destination-form></destination-form>
 
-
 <div class="container">
-    <a *ngFor="let destination of destinations"
-        (click)="onSelect(destination)"
-        [routerLink]="['/destination', destination.id]"
-        class="card text-white" >
-        <img class="card-img" src="{{ destination.imageUrl }}">
-        <div class="card-img-overlay">
-          <h4>{{ destination.name }}</h4>
-          <h4>{{ destination.country }}</h4>
-        </div>
-    </a>
+  <div *ngIf='destinations && destinations.length'>
+    <div class="row">
+      <a *ngFor='let destination of destinations'
+          class="card col-4 text-white"
+          (click)="onSelect(destination)"
+          [routerLink]="['/destination', destination.id]">
+          <img class="card-img" src="{{ destination.imageUrl }}">
+          <div class="card-img-overlay">
+            <span>{{ destination.name }}</span>
+            <span>{{ destination.country }}</span>
+          </div>
+      </a>
+    </div>
 </div>
