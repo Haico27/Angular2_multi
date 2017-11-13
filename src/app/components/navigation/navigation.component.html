@@ -1,28 +1,40 @@
-<nav class="navbar navbar-dark bg-dark">
-  <div class="justify-content-start">
-    <a routerLink="/home"
-      routerLinkActive="active">Home</a>
-    <a routerLink="/destinations"
-      routerLinkActive="active">Destinations</a>
-    <a routerLink="/chat"
-      routerLinkActive="active">Chat</a>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="justify-content-start collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="/home"
+          routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/destinations"
+          routerLinkActive="active">Destinations</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/chat"
+          routerLinkActive="active">Chat</a>
+      </li>
+    </ul>
   </div>
-  <div *ngIf="!currentUser" class="justify-content-end">
-    <a routerLink="/login"
-        routerLinkActive="active">Log in</a>
-    <a routerLink="/register"
-        routerLinkActive="active">Register</a>
-  </div>
-  <div *ngIf="currentUser" class="justify-content-end dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Welcome {{currentUser.firstName}}!
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" (click)="logout()">Log out</a>
+
+    <div *ngIf="!currentUser" class="justify-content-end">
+      <a routerLink="/login"
+          routerLinkActive="active">Log in</a>
+      <a routerLink="/register"
+          routerLinkActive="active">Register</a>
     </div>
 
-
-    <!-- <span class="text-light">Welcome {{currentUser.firstName}}!</span>
-    <a (click)="logout()">Log out</a> -->
-  </div>
+    <div *ngIf="currentUser" class="justify-content-end dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Welcome {{currentUser.firstName}}!
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="logout()">Log out</a>
+      </div>
+    </div>
 </nav>
