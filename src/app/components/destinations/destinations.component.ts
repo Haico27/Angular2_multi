@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { Destination } from '../../models/destination';
 
@@ -18,7 +18,7 @@ export class DestinationsComponent implements OnInit  {
   //constructor that injects destinationService into the destinationService-property
   constructor( private destinationService: DestinationService) { }
 
-  getDestinations() {
+  getDestinations(): void {
     this.destinationService.getDestinations().subscribe(destinations => this.destinations = destinations);
   }
 

@@ -47,6 +47,7 @@ router.post('/destination', function(req, res) {
   console.log('req.headers in server: ', req.headers)
   connection.query('INSERT INTO destinations SET ?', newDestination, function( err, result ) {
     console.log('added ' + newDestination);
+    res.send(newDestination)
     res.status(200).end();
   });
   connection.end();

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+
 
 import { Destination } from '../models/destination';
 
@@ -12,14 +12,19 @@ import { Destination } from '../models/destination';
 @Injectable()
 
 export class DestinationService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   private destinationsUrl = 'api/destinations'; //url to web-api
 
-  constructor( private http: Http) { }
 
+
+
+  constructor( private http: HttpClient) {
+
+  }
+
+  // GET destinations from the server
   getDestinations(): Observable<Destination[]> {
-    return this.http.get(this.destinationsUrl)
-    .map((response: Response) => response.json())
+    return this.http.get<Destination[]>(this.destinationsUrl)
   }
 
   private handleError(error: any):
@@ -32,16 +37,17 @@ export class DestinationService {
   getDestination(id: number): Promise<Destination> {
     return this.http.get(this.destinationsUrl)
       .toPromise()
-      .then((response: Response) => //console.log(response.json())
-        response.json().find(destination => destination.id === id))
+      .then(
+        (response: Response) => //console.log(response.json())
+        // response.json().find(destination => destination.id === id)
+        console.log("response in getDestination(id: number) ", response)
+      )
     .catch(this.handleError);
   }
 
-  create(model: {}): Promise<Destination> {
+  create(model: Destination): Observable<Destination> {
     console.log("function in destinationService is activated. Model: ", model)
-    return this.http.post('api/destination', JSON.stringify(model), { headers: this.headers} )
-            .toPromise()
-            .then(res => console.log(res))
-            .catch(this.handleError);
+    return this.http.post<Destination>('api/destination', JSON.stringify(model), { headers: this.headers} )
+
   }
 }
