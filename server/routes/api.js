@@ -38,6 +38,22 @@ router.get('/destinations', (req, res) => {
   connection.end();
 })
 
+router.get('/destinations/:id', (req, res) => {
+  const connection = getConnection();
+  const id = req.params.id
+  console.log("id in server: ", req.params.id)
+  connection.connect();
+  connection.query('SELECT * from destinations WHERE id = ?', id, function(err, rows, fields) {
+    if (!err) {
+      console.log(rows)
+      res.send(JSON.stringify(rows));
+    } else {
+      console.log('Error while performing Query');
+    }
+  });
+  connection.end();
+})
+
 //POST destination in database
 router.post('/destination', function(req, res) {
   const connection = getConnection();

@@ -34,16 +34,21 @@ export class DestinationService {
     return Promise.reject(error.message || error)
   }
 
-  getDestination(id: number): Promise<Destination> {
-    return this.http.get(this.destinationsUrl)
-      .toPromise()
-      .then(
-        (response: Response) => //console.log(response.json())
-        // response.json().find(destination => destination.id === id)
-        console.log("response in getDestination(id: number) ", response)
-      )
-    .catch(this.handleError);
+  getDestination(id: number): Observable<Destination> {
+    const url = `${this.destinationsUrl}/${id}`
+    return this.http.get<Destination>(url)
   }
+
+  // getDestination(id: number): Promise<Destination> {
+  //   return this.http.get(this.destinationsUrl)
+  //     .toPromise()
+  //     .then(
+  //       (response: Response) => //console.log(response.json())
+  //       // response.json().find(destination => destination.id === id)
+  //       console.log("response in getDestination(id: number) ", response)
+  //     )
+  //   .catch(this.handleError);
+  // }
 
   create(model: Destination): Observable<Destination> {
     console.log("function in destinationService is activated. Model: ", model)
