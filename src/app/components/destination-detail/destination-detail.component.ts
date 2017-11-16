@@ -31,7 +31,7 @@ export class DestinationDetailComponent implements OnInit {
     this.route.paramMap
       .switchMap((params: ParamMap) =>
       this.destinationService.getDestination(+params.get('id')))
-      .subscribe(destination => this.destination = destination)
+      .subscribe(destination => this.destination = destination[0])
   }
 
   goBack(): void {
