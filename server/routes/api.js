@@ -38,6 +38,22 @@ router.get('/destinations', (req, res) => {
   connection.end();
 })
 
+router.get('/destinations/:id', (req, res) => {
+  const connection = getConnection();
+  const id = req.params.id
+  console.log("id in server: ", req.params.id)
+  connection.connect();
+  connection.query('SELECT * from destinations WHERE id = ?', id, function(err, rows, fields) {
+    if (!err) {
+      console.log(rows)
+      res.send(JSON.stringify(rows));
+    } else {
+      console.log('Error while performing Query');
+    }
+  });
+  connection.end();
+})
+
 //POST destination in database
 router.post('/destination', function(req, res) {
   const connection = getConnection();
@@ -47,6 +63,7 @@ router.post('/destination', function(req, res) {
   console.log('req.headers in server: ', req.headers)
   connection.query('INSERT INTO destinations SET ?', newDestination, function( err, result ) {
     console.log('added ' + newDestination);
+    res.send(newDestination)
     res.status(200).end();
   });
   connection.end();
